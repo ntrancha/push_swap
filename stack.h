@@ -72,5 +72,20 @@ void    print(t_memory *mem);
 void    debug(t_stack *stack);
 void    print_stack(t_memory *mem);
 void        print_swap(t_memory *mem);
+int     find_min(t_stack *stack, int max);
+int     find_max(t_stack *stack);
+int     find_jump_start(t_stack *stack, int max);
+int     find_jump_end(t_stack *stack, int max);
+void        swap_sa(t_memory *mem);
+void        swap_sb(t_memory *mem);
+void        swap_ss(t_memory *mem);
+void        swap_pa(t_memory *mem);
+void        swap_pb(t_memory *mem);
+void        swap_ra(t_memory *mem);
+void        swap_rb(t_memory *mem);
+void        swap_rr(t_memory *mem);
+void        swap_rra(t_memory *mem);
+void        swap_rrb(t_memory *mem);
+void        swap_rrr(t_memory *mem);
 
 #endif
