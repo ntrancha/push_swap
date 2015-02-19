@@ -40,16 +40,37 @@ typedef struct      s_memory
 	void			(*func)(struct s_memory*);
 	int				debug;
 	int				iter;
+	int				size;
 	t_stack			*stack_a;
 	t_stack			*stack_b;
 }					t_memory;
 
+typedef struct      s_brute
+{
+	int				min;
+	char			*code;	
+}					t_brute;
+
 t_stack     *ft_stackcreate(void);
 t_stack     *ft_stackadd(t_stack *stack, int content);
 t_stack     *ft_stackaddfirst(t_stack *stack, int content);
+t_stack         *stack_copy(t_stack *stack);
+t_memory        *mem_copy(t_memory *mem);
 void        ft_stackdelplate(t_stack *stack, t_plate *plate);
 void        ft_stackdel(t_stack *stack);
 int         ft_stackcontent(t_stack *stack, t_plate *plate);
 void        ft_stackswap(t_stack *stack, t_plate *plate, t_plate *plate2);
+int     is_middle(t_memory *mem);
+int     is_unsort(t_stack *stack);
+int     is_sort(t_stack *stack);
+int         test_double_after(int point, int size, char **tab);
+int     test_double(int point, int size, char **tab);
+int     error(void);
+int     verif(int size, char **tab);
+int     start(int size, char **tab, t_stack *stack);
+void    print(t_memory *mem);
+void    debug(t_stack *stack);
+void    print_stack(t_memory *mem);
+void        print_swap(t_memory *mem);
 
 #endif

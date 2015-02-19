@@ -15,124 +15,6 @@
 #include <stdlib.h>
 #include "stack.h"
 
-t_stack			*stack_copy(t_stack *stack)
-{
-	t_stack		*new;
-	t_plate		*plate;
-
-	new = ft_stackcreate();
-	if (!new)
-		return (new);
-	plate = stack->start;
-	while (plate)
-	{
-		ft_stackadd(new, plate->content);
-		plate = plate->next;
-	}
-	return (new);
-}
-
-t_memory		*mem_copy(t_memory *mem)
-{
-	t_memory	*new;
-	t_stack		*stack_a;
-	t_stack		*stack_b;
-	
-	new = malloc(sizeof(t_memory));
-	if (!new)
-		return (new);
-	new->type = NULL;
-	new->chaine = ft_strdup(mem->chaine);
-	new->debug = mem->debug;
-	new->iter = mem->iter;
-	new->func = NULL;
-	stack_a = stack_copy(STACK_A);
-	stack_b = stack_copy(STACK_B);
-	return (new);
-}
-
-void		print_swap(t_memory *mem)
-{
-	if (mem->debug == 1)
-	{
-		ft_putstr(mem->type);
-		ft_putstr("\t");
-		if (!ft_strcmp(mem->type, "pa") && STACK_B->size)
-		{
-			ft_putstr("[STACK B] ===> [STACK A]\t");
-			ft_putnbr(STACK_B->end->content);
-		}
-		else if (!ft_strcmp(mem->type, "pb") && STACK_A->size)
-		{
-			ft_putstr("[STACK A] ===> [STACK B]\t");
-			ft_putnbr(STACK_A->end->content);
-		}
-		else if (!ft_strcmp(mem->type, "ss") && STACK_B->size > 1 && STACK_A->size > 1)
-		{
-			ft_putstr("[STACK A] <--> [STACK B]\t");
-			ft_putnbr(STACK_A->end->content);
-			ft_putchar(' ');
-			ft_putnbr(STACK_A->end->previous->content);
-			ft_putchar('\t');
-			ft_putnbr(STACK_B->end->content);
-			ft_putchar(' ');
-			ft_putnbr(STACK_B->end->previous->content);
-		} 
-		else if (!ft_strcmp(mem->type, "sb") && STACK_B->size > 1)
-		{
-			ft_putstr("[STACK B] <-->\t\t");
-			ft_putnbr(STACK_B->end->content);
-			ft_putchar(' ');
-			ft_putnbr(STACK_B->end->previous->content);
-		} 
-		else if (!ft_strcmp(mem->type, "sa") && STACK_A->size > 1)
-		{
-			ft_putstr("[STACK A] <-->\t\t");
-			ft_putnbr(STACK_A->end->content);
-			ft_putchar(' ');
-			ft_putnbr(STACK_A->end->previous->content);
-		} 
-		else if (!ft_strcmp(mem->type, "rra") && STACK_A->size > 1)
-		{
-			ft_putstr("[STACK A] <<<<\t\t");
-			ft_putnbr(STACK_A->end->content);
-		}
-		else if (!ft_strcmp(mem->type, "rrb") && STACK_B->size > 1)
-		{
-			ft_putstr("[STACK B] <<<<\t\t");
-			ft_putnbr(STACK_B->end->content);
-		}
-		else if (!ft_strcmp(mem->type, "rrr") && STACK_A->size > 1 && STACK_B->size > 1)
-		{
-			ft_putstr("[STACK A] <<<< [STACK B]\t");
-			ft_putnbr(STACK_B->end->content);
-		}
-		else if (!ft_strcmp(mem->type, "ra") && STACK_A->size > 1)
-		{
-			ft_putstr("[STACK A] >>>>\t\t");
-			ft_putnbr(STACK_A->end->content);
-		}
-		else if (!ft_strcmp(mem->type, "rb") && STACK_B->size > 1)
-		{
-			ft_putstr("[STACK B] >>>>\t\t");
-			ft_putnbr(STACK_B->end->content);
-		}
-		else if (!ft_strcmp(mem->type, "rr") && STACK_A->size > 1 && STACK_B->size > 1)
-		{
-			ft_putstr("[STACK A] >>>> [STACK B]\t");
-			ft_putnbr(STACK_B->end->content);
-		}
-		else
-			ft_putstr("OPERATION IMPOSSIBLE");
-		ft_putchar('\n');
-	}
-	else
-	{
-		ft_putstr(mem->type);
-	}
-	mem->func(mem);
-}
-
 void		swap_sa(t_memory *mem)
 {
 	if (STACK_A->size > 1)
@@ -284,162 +166,8 @@ void		swap_swap(t_memory *mem, char *swap)
 		mem->type = ft_strdup(swap);
 	if (mem->type)
 		swap_action(mem);
-}
-
-int			test_double_after(int point, int size, char **tab)
-{
-	char	*test;
-
-	test = tab[point++];
-	while (point <= size)
-		if (ft_strcmp(test, tab[point++]) == 0)
-			return (0);
-	return (1);
-}
-
-int		test_double(int point, int size, char **tab)
-{
-	while (point < size)
-		if (test_double_after(point++, size, tab) == 0)
-			return (0);
-	return (1);
-}
-
-int		error(void)
-{
-	ft_putendl_fd("Error", 2);
-	return (0);
-}
-
-int		verif(int size, char **tab)
-{
-	char	*num;
-
-	num = tab[size--];
-	if (ft_strisnum(num) == 0)
-		return (0);
-	if (size == 0)
-		return (1);
-	return (verif(size, tab));
-}
-
-int		start(int size, char **tab, t_stack *stack)
-{
-	t_plate	*plate;
-	int		*num;
-	int		*ptr;
-	int		nbr;
-	int		index;
-
-	num = ft_memalloc(sizeof(int) * size);
-	index = 0;
-	while (index < size)
-		num[index] = ft_atoi(tab[(index++ + 1)]);
-	while (size)
-		stack = ft_stackadd(stack, num[--size]);
-	plate = stack->start;
-	return (1);
-}
-
-void	print_stack(t_memory *mem)
-{
-	t_plate	*plate_a;
-	t_plate	*plate_b;
-
-	plate_a = STACK_A->start;
-	plate_b = STACK_B->start;
-	ft_putstr("--------------------------\nSTACK A\t\tSTACK B\n--------------------------");
-	ft_putendl("\t<-- Bas de la pile");
-	while (plate_a || plate_b)
-	{
-		if (plate_a)
-		{
-			ft_putnbr(plate_a->content);
-			plate_a = plate_a->next;
-		}
-		//else
-			//ft_putchar('\t');
-		ft_putstr("\t\t");
-		if (plate_b)
-		{
-			ft_putnbr(plate_b->content);
-			plate_b = plate_b->next;
-		}
-		ft_putchar('\n');
-	}
-	ft_putendl("-------------------------\t<-- Haut de la pile");
-}
-
-void	debug(t_stack *stack)
-{
-	t_plate	*plate;
-	int		nbr;
-
-	plate = stack->start;
-	while (plate)
-	{
-		nbr = plate->content;
-		ft_putnbr(nbr);
-		ft_putchar(' ');
-		plate = plate->next;
-	}
-}
-
-void	print(t_memory *mem)
-{
-	ft_putstr("stack A: ");
-	debug(STACK_A);
-	ft_putchar('\n');
-	ft_putstr("stack B: ");
-	debug(STACK_B);
-	ft_putstr("\n--------------------------\n");
-}
-
-
-int		is_unsort(t_stack *stack)
-{
-	int		min;
-	t_plate	*plate;
-
-	plate = stack->start;
-	min = plate->content;
-	plate = plate->next;
-	while (plate)
-	{
-		if (plate->content > min)
-			min = plate->content;
-		else
-			return (0);
-		plate = plate->next;
-	}
-	return (1);
-}
-
-int		is_sort(t_stack *stack)
-{
-	int		max;
-	t_plate	*plate;
-
-	plate = stack->start;
-	max = plate->content;
-	plate = plate->next;
-	while (plate)
-	{
-		if (plate->content < max)
-			max = plate->content;
-		else
-			return (0);
-		plate = plate->next;
-	}
-	plate = stack->start;
-	max = plate->content;
-	plate = plate->next;
-	while (plate)
-	{
-		ft_putnbr_endl(plate->content);
-		plate = plate->next;
-	}
-	return (1);
+	else if (mem->debug)
+		ft_putendl("ACTION INCONNU");
 }
 
 int		find_min(t_stack *stack, int max)
@@ -521,16 +249,6 @@ void	rotate(t_memory *mem, t_stack *stack, int max)
 			swap_swap(mem, "rra");
 }
 
-int		is_middle(t_memory *mem)
-{
-	int	size;
-
-	size = (STACK_A->size + STACK_B->size) / 2;
-	if (STACK_A->size - 1 <= size && STACK_B->size - 1 <= size)
-		return 1;
-	return (0);
-}
-
 void	trie(t_memory *mem)
 {
 	int		max;
@@ -575,10 +293,44 @@ void	trie(t_memory *mem)
 	}
 }
 
+int				brute_force(t_memory *mem, t_brute *brute)
+{
+	t_memory	*sa;
+	t_memory	*ra;
+	int			ts;
+	int			tr;
+
+	if (mem->iter < brute->min && !is_sort(STACK_A))
+	{
+		sa = mem_copy(mem);
+		ra = mem_copy(mem);
+		swap_swap(sa, "sa");
+		swap_swap(ra, "ra");
+		tr = brute_force(ra, brute);
+		ts = brute_force(sa, brute);
+	}
+	if (is_sort(STACK_A))
+	{
+		if (mem->iter < brute->min)
+		{
+			if (brute->code)
+				ft_strdel(&(brute->code));
+			brute->code = ft_strdup(mem->chaine);
+			brute->min = mem->iter;
+		}
+		ft_putnbr(mem->iter);
+		ft_putstr("\t");
+		ft_putendl(mem->chaine);
+		return (mem->iter);
+	}
+	return (mem->size * 3);
+}
+
 int		push_swap(int size, char **tab)
 {
-	t_stack	*stack;
-	t_stack	*stack_b;
+	t_stack		*stack;
+	t_stack		*stack_b;
+	t_brute		*brute;
 	t_memory	*mem;
 	void	(*func)(t_memory*);
 
@@ -588,7 +340,7 @@ int		push_swap(int size, char **tab)
 	mem = ft_memalloc(sizeof(t_memory));
 	mem->stack_a = stack;
 	mem->stack_b = stack_b;
-	mem->debug = 1;
+	mem->debug = 0;
 	mem->iter = 0;
 	mem->chaine = ft_strnew(0);
 	mem->type = NULL;
@@ -596,14 +348,20 @@ int		push_swap(int size, char **tab)
 		return (error());
 	if (start(size, tab, stack) == 0)
 		return (0);
+	mem->size = STACK_A->size;
 	//print_stack(mem);
 	//print(mem);
 	//swap_swap(mem, "sa");
-	trie(mem);
-	print_stack(mem);
-	ft_putendl(mem->chaine);
-	ft_putstr("Nombre d'operation: ");
-	ft_putnbr_endl(mem->iter);
+	//trie(mem);
+	brute = malloc(sizeof(t_brute));
+	brute->min = mem->size * 3;
+	brute->code = NULL;
+	brute_force(mem, brute);
+	ft_putendl(brute->code);
+	//print_stack(mem);
+	//ft_putendl(mem->chaine);
+	//ft_putstr("Nombre d'operation: ");
+	//ft_putnbr_endl(mem->iter);
 	ft_stackdel(STACK_A);
 	ft_stackdel(STACK_B);
 	ft_strdel(&(mem->type));
