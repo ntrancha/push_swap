@@ -87,5 +87,8 @@ void        swap_rr(t_memory *mem);
 void        swap_rra(t_memory *mem);
 void        swap_rrb(t_memory *mem);
 void        swap_rrr(t_memory *mem);
+void        swap_action(t_memory *mem);
+void        swap_swap(t_memory *mem, char *swap);
+void    rotate(t_memory *mem, t_stack *stack, int max);
 
 #endif
