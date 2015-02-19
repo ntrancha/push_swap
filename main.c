@@ -15,6 +15,42 @@
 #include <stdlib.h>
 #include "stack.h"
 
+t_stack			*stack_copy(t_stack *stack)
+{
+	t_stack		*new;
+	t_plate		*plate;
+
+	new = ft_stackcreate();
+	if (!new)
+		return (new);
+	plate = stack->start;
+	while (plate)
+	{
+		ft_stackadd(new, plate->content);
+		plate = plate->next;
+	}
+	return (new);
+}
+
+t_memory		*mem_copy(t_memory *mem)
+{
+	t_memory	*new;
+	t_stack		*stack_a;
+	t_stack		*stack_b;
+	
+	new = malloc(sizeof(t_memory));
+	if (!new)
+		return (new);
+	new->type = NULL;
+	new->chaine = ft_strdup(mem->chaine);
+	new->debug = mem->debug;
+	new->iter = mem->iter;
+	new->func = NULL;
+	stack_a = stack_copy(STACK_A);
+	stack_b = stack_copy(STACK_B);
+	return (new);
+}
+
 void		print_swap(t_memory *mem)
 {
 	if (mem->debug == 1)
@@ -183,6 +219,9 @@ void		swap_rrr(t_memory *mem)
 
 void		swap_action(t_memory *mem)
 {
+	char	*tmp;
+	char	*tmp2;
+
 	if (!ft_strcmp(mem->type, "sa"))
 		mem->func = swap_sa;
 	if (!ft_strcmp(mem->type, "sb"))
@@ -205,34 +244,44 @@ void		swap_action(t_memory *mem)
 		mem->func = swap_rr;
 	if (!ft_strcmp(mem->type, "rrr"))
 		mem->func = swap_rrr;
+	mem->iter++;
+	tmp = ft_strjoin(mem->chaine, ";");
+	tmp2 = ft_strjoin(tmp, mem->type);
+	ft_strdel(&(mem->chaine));
+	ft_strdel(&(tmp));
+	mem->chaine = tmp2;
 	print_swap(mem);
 }
 
 void		swap_swap(t_memory *mem, char *swap)
 {
-	mem->type = NULL;
+	char	*type;
+
+	type = mem->type;
+	if (type != NULL)
+		ft_memdel((void**)&type);
 	if (!ft_strcmp(swap, "sa"))
-		mem->type = swap;
+		mem->type = ft_strdup(swap);
 	if (!ft_strcmp(swap, "sb"))
-		mem->type = swap;
+		mem->type = ft_strdup(swap);
 	if (!ft_strcmp(swap, "pa"))
-		mem->type = swap;
+		mem->type = ft_strdup(swap);
 	if (!ft_strcmp(swap, "pb"))
-		mem->type = swap;
+		mem->type = ft_strdup(swap);
 	if (!ft_strcmp(swap, "ra"))
-		mem->type = swap;
+		mem->type = ft_strdup(swap);
 	if (!ft_strcmp(swap, "rb"))
-		mem->type = swap;
+		mem->type = ft_strdup(swap);
 	if (!ft_strcmp(swap, "rra"))
-		mem->type = swap;
+		mem->type = ft_strdup(swap);
 	if (!ft_strcmp(swap, "rrb"))
-		mem->type = swap;
+		mem->type = ft_strdup(swap);
 	if (!ft_strcmp(swap, "ss"))
-		mem->type = swap;
+		mem->type = ft_strdup(swap);
 	if (!ft_strcmp(swap, "rr"))
-		mem->type = swap;
+		mem->type = ft_strdup(swap);
 	if (!ft_strcmp(swap, "rrr"))
-		mem->type = swap;
+		mem->type = ft_strdup(swap);
 	if (mem->type)
 		swap_action(mem);
 }
@@ -338,12 +387,192 @@ void	debug(t_stack *stack)
 
 void	print(t_memory *mem)
 {
-	ft_putstr("--------------------------\nstack A: ");
+	ft_putstr("stack A: ");
 	debug(STACK_A);
 	ft_putchar('\n');
 	ft_putstr("stack B: ");
 	debug(STACK_B);
 	ft_putstr("\n--------------------------\n");
+}
+
+
+int		is_unsort(t_stack *stack)
+{
+	int		min;
+	t_plate	*plate;
+
+	plate = stack->start;
+	min = plate->content;
+	plate = plate->next;
+	while (plate)
+	{
+		if (plate->content > min)
+			min = plate->content;
+		else
+			return (0);
+		plate = plate->next;
+	}
+	return (1);
+}
+
+int		is_sort(t_stack *stack)
+{
+	int		max;
+	t_plate	*plate;
+
+	plate = stack->start;
+	max = plate->content;
+	plate = plate->next;
+	while (plate)
+	{
+		if (plate->content < max)
+			max = plate->content;
+		else
+			return (0);
+		plate = plate->next;
+	}
+	plate = stack->start;
+	max = plate->content;
+	plate = plate->next;
+	while (plate)
+	{
+		ft_putnbr_endl(plate->content);
+		plate = plate->next;
+	}
+	return (1);
+}
+
+int		find_min(t_stack *stack, int max)
+{
+	t_plate	*plate;
+
+	plate = stack->start;
+	while (plate)
+	{
+		if (plate->content < max)
+			max = plate->content;
+		plate = plate->next;
+	}
+	return (max);
+}
+
+int		find_max(t_stack *stack)
+{
+	int		ret;
+	t_plate	*plate;
+
+	ret = 0;
+	plate = stack->start;
+	while (plate)
+	{
+		if (plate->content > ret)
+			ret = plate->content;
+		plate = plate->next;
+	}
+	return (ret);
+}
+
+int		find_jump_start(t_stack *stack, int max)
+{
+	t_plate	*plate;
+	int		ret;
+
+	plate = stack->start;
+	ret = 0;
+	while (plate)
+	{
+		if (plate->content == max)
+			return (ret);
+		plate = plate->next;
+		ret++;
+	}
+	return (ret);
+}
+
+int		find_jump_end(t_stack *stack, int max)
+{
+	t_plate	*plate;
+	int		ret;
+
+	plate = stack->end;
+	ret = 0;
+	while (plate)
+	{
+		if (plate->content == max)
+			return (ret);
+		plate = plate->previous;
+		ret++;
+	}
+	return (ret);
+}
+
+void	rotate(t_memory *mem, t_stack *stack, int max)
+{
+	int	start;
+	int	end;
+
+	start = find_jump_start(stack, max);
+	end = find_jump_end(stack, max);
+	if (start > end)
+		while (PLATE_A->content != max)
+			swap_swap(mem, "ra");
+	else
+		while (PLATE_A->content != max)
+			swap_swap(mem, "rra");
+}
+
+int		is_middle(t_memory *mem)
+{
+	int	size;
+
+	size = (STACK_A->size + STACK_B->size) / 2;
+	if (STACK_A->size - 1 <= size && STACK_B->size - 1 <= size)
+		return 1;
+	return (0);
+}
+
+void	trie(t_memory *mem)
+{
+	int		max;
+	int		min;
+	int		sort_a;
+	int		sort_b;
+	int		count;
+	int		mid;
+
+	count = 0;
+	while (count++ < 100 && (STACK_B->size || count < 5))
+	{
+		max = find_max(STACK_A);
+		min = find_min(STACK_A, max);
+		sort_a = 0;
+		sort_b = 0;
+		mid = 0;
+		if (is_sort(STACK_A))
+			sort_a = 1;
+		if (STACK_B->size && is_unsort(STACK_B))
+			sort_b = 1;
+		if (is_middle(mem))
+			mid = 1;
+		if (STACK_B->size > 1 && PLATE_B->content < PLATE_B->previous->content)
+		{
+			swap_swap(mem, "sb");
+			swap_swap(mem, "pa");
+		}
+		else if (STACK_B->size > 1 && PLATE_B->content < STACK_B->start->content)
+			swap_swap(mem, "rrb");
+		else if (PLATE_A->content == min && !sort_a)
+			swap_swap(mem, "pb");
+		else if (PLATE_A->previous && PLATE_A->content > PLATE_A->previous->content)
+			swap_swap(mem, "sa");
+		else if (PLATE_A->content > STACK_A->start->content)
+			swap_swap(mem, "rra");
+		else if (!STACK_B->size || !sort_a)
+			swap_swap(mem, "pb");
+		else
+			swap_swap(mem, "pa");
+		print(mem);
+	}
 }
 
 int		push_swap(int size, char **tab)
@@ -360,23 +589,26 @@ int		push_swap(int size, char **tab)
 	mem->stack_a = stack;
 	mem->stack_b = stack_b;
 	mem->debug = 1;
+	mem->iter = 0;
+	mem->chaine = ft_strnew(0);
+	mem->type = NULL;
 	if (verif(size, tab) == 0 || test_double(1, size, tab) == 0)
 		return (error());
 	if (start(size, tab, stack) == 0)
 		return (0);
-	print(mem);
-	swap_swap(mem, "pa");
-	swap_swap(mem, "pb");
-	swap_swap(mem, "pb");
-	swap_swap(mem, "pb");
-	swap_swap(mem, "pa");
-	swap_swap(mem, "ss");
-	swap_swap(mem, "rr");
-	swap_swap(mem, "rrr");
-	swap_swap(mem, "ss");
-	swap_swap(mem, "pa");
-	swap_swap(mem, "pa");
+	//print_stack(mem);
+	//print(mem);
+	//swap_swap(mem, "sa");
+	trie(mem);
 	print_stack(mem);
+	ft_putendl(mem->chaine);
+	ft_putstr("Nombre d'operation: ");
+	ft_putnbr_endl(mem->iter);
+	ft_stackdel(STACK_A);
+	ft_stackdel(STACK_B);
+	ft_strdel(&(mem->type));
+	ft_strdel(&(mem->chaine));
+	ft_memdel((void**)&mem);
 	return (1);
 }
 
