@@ -15,6 +15,14 @@
 #include <stdlib.h>
 #include "stack.h"
 
+void	memory_del(t_memory *mem)
+{
+	ft_strdel(&mem->chaine);
+	ft_strdel(&mem->type);
+	ft_stackdel(STACK_A);
+	ft_stackdel(STACK_B);
+}
+
 void	trie(t_memory *mem)
 {
 	int		max;
@@ -61,19 +69,36 @@ void	trie(t_memory *mem)
 
 int				brute_force(t_memory *mem, t_brute *brute)
 {
-	t_memory	*sa;
-	t_memory	*ra;
-	int			ts;
-	int			tr;
+	char		*last;
 
+	last = NULL;
 	if (mem->iter < brute->min && !is_sort(STACK_A))
 	{
-		sa = mem_copy(mem);
-		ra = mem_copy(mem);
-		swap_swap(sa, "sa");
-		swap_swap(ra, "ra");
-		tr = brute_force(ra, brute);
-		ts = brute_force(sa, brute);
+		if (last)
+			ft_strdel(&last);
+		last = find_last_code(mem);
+		if (ft_strcmp(last, ";sb") != 0 && STACK_A->size > 1)
+			brute_force(swap_swap(mem_copy(mem), "sa"), brute);
+		if (ft_strcmp(last, ";sa") != 0 && STACK_B->size > 1)
+			brute_force(swap_swap(mem_copy(mem), "sb"), brute);
+		if (STACK_B->size > 1 && STACK_B->size > 1)
+			brute_force(swap_swap(mem_copy(mem), "ss"), brute);
+		if (ft_strcmp(last, ";pb") != 0 && !STACK_B->size)	
+			brute_force(swap_swap(mem_copy(mem), "pa"), brute);
+		if (ft_strcmp(last, ";pa") != 0 && STACK_A->size > 1)	
+			brute_force(swap_swap(mem_copy(mem), "pb"), brute);
+		if (ft_strcmp(last, ";rb") != 0 && STACK_A->size > 2)	
+			brute_force(swap_swap(mem_copy(mem), "ra"), brute);
+		if (ft_strcmp(last, ";ra") != 0 && STACK_B->size > 2)	
+			brute_force(swap_swap(mem_copy(mem), "rb"), brute);
+		if (STACK_B->size > 2 && STACK_B->size > 2)
+			brute_force(swap_swap(mem_copy(mem), "rr"), brute);
+		if (ft_strcmp(last, "rrb") != 0 && STACK_A->size > 2)	
+			brute_force(swap_swap(mem_copy(mem), "rra"), brute);
+		if (ft_strcmp(last, "rra") != 0 && STACK_B->size > 2)	
+			brute_force(swap_swap(mem_copy(mem), "rrb"), brute);
+		if (STACK_B->size > 2 && STACK_B->size > 2)
+			brute_force(swap_swap(mem_copy(mem), "rrr"), brute);
 	}
 	if (is_sort(STACK_A))
 	{
@@ -87,9 +112,11 @@ int				brute_force(t_memory *mem, t_brute *brute)
 		ft_putnbr(mem->iter);
 		ft_putstr("\t");
 		ft_putendl(mem->chaine);
-		return (mem->iter);
+		memory_del(mem);
+		return (1);
 	}
-	return (mem->size * 3);
+	memory_del(mem);
+	return (0);
 }
 
 int		push_swap(int size, char **tab)
@@ -120,7 +147,7 @@ int		push_swap(int size, char **tab)
 	//swap_swap(mem, "sa");
 	//trie(mem);
 	brute = malloc(sizeof(t_brute));
-	brute->min = mem->size * 3;
+	brute->min = mem->size - 1;
 	brute->code = NULL;
 	brute_force(mem, brute);
 	ft_putendl(brute->code);
@@ -128,11 +155,6 @@ int		push_swap(int size, char **tab)
 	//ft_putendl(mem->chaine);
 	//ft_putstr("Nombre d'operation: ");
 	//ft_putnbr_endl(mem->iter);
-	ft_stackdel(STACK_A);
-	ft_stackdel(STACK_B);
-	ft_strdel(&(mem->type));
-	ft_strdel(&(mem->chaine));
-	ft_memdel((void**)&mem);
 	return (1);
 }
 

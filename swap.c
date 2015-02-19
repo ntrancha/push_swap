@@ -51,7 +51,7 @@ void        swap_action(t_memory *mem)
     print_swap(mem);
 }
 
-void        swap_swap(t_memory *mem, char *swap)
+t_memory    *swap_swap(t_memory *mem, char *swap)
 {
     char    *type;
 
@@ -84,6 +84,7 @@ void        swap_swap(t_memory *mem, char *swap)
         swap_action(mem);
     else if (mem->debug)
         ft_putendl("ACTION INCONNU");
+	return (mem);
 }
 
 void    rotate(t_memory *mem, t_stack *stack, int max)

@@ -76,6 +76,7 @@ int     find_min(t_stack *stack, int max);
 int     find_max(t_stack *stack);
 int     find_jump_start(t_stack *stack, int max);
 int     find_jump_end(t_stack *stack, int max);
+char    *find_last_code(t_memory *mem);
 void        swap_sa(t_memory *mem);
 void        swap_sb(t_memory *mem);
 void        swap_ss(t_memory *mem);
@@ -88,7 +89,7 @@ void        swap_rra(t_memory *mem);
 void        swap_rrb(t_memory *mem);
 void        swap_rrr(t_memory *mem);
 void        swap_action(t_memory *mem);
-void        swap_swap(t_memory *mem, char *swap);
+t_memory    *swap_swap(t_memory *mem, char *swap);
 void    rotate(t_memory *mem, t_stack *stack, int max);
 
 #endif

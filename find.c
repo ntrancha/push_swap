@@ -15,6 +15,23 @@
 #include <stdlib.h>
 #include "stack.h"
 
+char	*find_last_code(t_memory *mem)
+{
+	char	*ret;
+	int		size;
+
+	ret = ft_strnew(4);
+	if (mem->chaine && ft_strlen(mem->chaine) > 2)
+	{
+		size = ft_strlen(mem->chaine);
+		ret[0] = mem->chaine[size - 3];
+		ret[1] = mem->chaine[size - 2];
+		ret[2] = mem->chaine[size - 1];
+		ret[3] = mem->chaine[size];
+	}
+	return (ret);
+}
+
 int     find_min(t_stack *stack, int max)
 {
     t_plate *plate;
