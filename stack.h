@@ -16,6 +16,8 @@
 # define CONTENTS	ft_stackcontent
 # define STACK_A	mem->stack_a
 # define STACK_B	mem->stack_b
+# define SIZE_A		mem->stack_a->size
+# define SIZE_B		mem->stack_b->size
 # define PLATE_A	mem->stack_a->end
 # define PLATE_B	mem->stack_b->end
 
