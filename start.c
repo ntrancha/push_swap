@@ -35,9 +35,7 @@ int     verif(int size, char **tab)
 
 int     start(int size, char **tab, t_stack *stack)
 {
-    t_plate *plate;
     int     *num;
-    int     *ptr;
     int     nbr;
     int     index;
 
@@ -47,7 +45,6 @@ int     start(int size, char **tab, t_stack *stack)
         num[index] = ft_atoi(tab[(index++ + 1)]);
     while (size)
         stack = ft_stackadd(stack, num[--size]);
-    plate = stack->start;
+    ft_memdel((void**)&num);
     return (1);
 }
-

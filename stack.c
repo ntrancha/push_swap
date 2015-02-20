@@ -10,6 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <libft.h>
+#include <unistd.h>
+#include <stdlib.h>
 #include "stack.h"
 
 t_stack		*ft_stackcreate(void)
@@ -99,5 +102,5 @@ void        ft_stackdel(t_stack *stack)
             plate = tmp;
         }
     }
-    ft_memdel((void**)&stack);
+    free(stack);
 }
