@@ -16,10 +16,27 @@
 # define CONTENTS	ft_stackcontent
 # define STACK_A	mem->stack_a
 # define STACK_B	mem->stack_b
-# define SIZE_A		mem->stack_a->size
-# define SIZE_B		mem->stack_b->size
-# define PLATE_A	mem->stack_a->end
-# define PLATE_B	mem->stack_b->end
+# define TYPE		mem->type
+# define CHAINE		mem->chaine
+# define ITER		mem->iter
+# define SIZE		mem->size
+# define DEBUG		mem->debug
+# define FUNC		mem->func
+# define SIZE_A		STACK_A->size
+# define SIZE_B		STACK_B->size
+# define END_A		STACK_A->start
+# define END_B		STACK_A->start
+# define PLATE_A	STACK_A->end
+# define PLATE_B	STACK_B->end
+# define NEXT_A		PLATE_A->previous
+# define NEXT_B		PLATE_B->previous
+# define TOKEN		plate->content
+# define TOKEN_A	PLATE_A->content
+# define TOKEN_B	PLATE_B->content
+# define NEXT		plate->next
+# define PREVIOUS	plate->previous
+# define START		stack->start
+# define END		stack->end
 
 typedef struct      s_plate
 {

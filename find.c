@@ -21,13 +21,13 @@ char	*find_last_code(t_memory *mem)
 	int		size;
 
 	ret = ft_strnew(4);
-	if (mem->chaine && ft_strlen(mem->chaine) > 2)
+	if (CHAINE && ft_strlen(CHAINE) > 2)
 	{
-		size = ft_strlen(mem->chaine);
-		ret[0] = mem->chaine[size - 3];
-		ret[1] = mem->chaine[size - 2];
-		ret[2] = mem->chaine[size - 1];
-		ret[3] = mem->chaine[size];
+		size = ft_strlen(CHAINE);
+		ret[0] = CHAINE[size - 3];
+		ret[1] = CHAINE[size - 2];
+		ret[2] = CHAINE[size - 1];
+		ret[3] = CHAINE[size];
 	}
 	return (ret);
 }
@@ -39,8 +39,8 @@ int     find_min(t_stack *stack, int max)
     plate = stack->start;
     while (plate)
     {
-        if (plate->content < max)
-            max = plate->content;
+        if (TOKEN < max)
+            max = TOKEN;
         plate = plate->next;
     }
     return (max);
@@ -55,8 +55,8 @@ int     find_max(t_stack *stack)
     plate = stack->start;
     while (plate)
     {
-        if (plate->content > ret)
-            ret = plate->content;
+        if (TOKEN > ret)
+            ret = TOKEN;
         plate = plate->next;
     }
     return (ret);
@@ -71,7 +71,7 @@ int     find_jump_start(t_stack *stack, int max)
     ret = 0;
     while (plate)
     {
-        if (plate->content == max)
+        if (TOKEN == max)
             return (ret);
         plate = plate->next;
         ret++;
@@ -88,7 +88,7 @@ int     find_jump_end(t_stack *stack, int max)
     ret = 0;
     while (plate)
     {
-        if (plate->content == max)
+        if (TOKEN == max)
             return (ret);
         plate = plate->previous;
         ret++;

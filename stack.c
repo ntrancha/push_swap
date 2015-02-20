@@ -23,8 +23,8 @@ t_stack		*ft_stackcreate(void)
     if (!stack)
         return (NULL);
     stack->size = 0;
-    stack->start = NULL;
-    stack->end = NULL;
+    START = NULL;
+    END = NULL;
     return (stack);
 }
 
@@ -37,14 +37,14 @@ t_stack		*ft_stackadd(t_stack *stack, int content)
     plate = ft_memalloc(sizeof(t_plate));
     if (!plate) 
         return (NULL);
-    plate->content = content;
-    plate->next = NULL;
-    plate->previous = stack->end;
-    if (!stack->end)
-        stack->start = plate;
+    TOKEN = content;
+    NEXT = NULL;
+    PREVIOUS = END;
+    if (!END)
+        START = plate;
     else
-        stack->end->next = plate;
-    stack->end = plate;
+        END->next = plate;
+    END = plate;
     stack->size++;
     return (stack);
 }
@@ -58,14 +58,14 @@ t_stack		*ft_stackaddfirst(t_stack *stack, int content)
     plate = ft_memalloc(sizeof(t_plate));
     if (!plate) 
         return (NULL);
-    plate->content = content;
-    plate->next = stack->start;
-    plate->previous = NULL;
-    if (stack->start)
-        stack->start->previous = plate;
+    TOKEN = content;
+    NEXT = START;
+    PREVIOUS = NULL;
+    if (START)
+        START->previous = plate;
     else
-        stack->end = plate; 
-    stack->start = plate;
+        END = plate; 
+    START = plate;
     stack->size++;
     return (stack);
 }
@@ -74,14 +74,14 @@ void        ft_stackdelplate(t_stack *stack, t_plate *plate)
 {
     if (stack && plate && ft_stackcontent(stack, plate))
     {
-        if (plate->previous)
-            plate->previous->next = plate->next;
-        if (plate->next)
-            plate->next->previous = plate->previous;
-        if (stack->end == plate)
-            stack->end = plate->previous;
-        if (stack->start == plate)
-            stack->start = plate->next;
+        if (PREVIOUS)
+            PREVIOUS->next = NEXT;
+        if (NEXT)
+            NEXT->previous = PREVIOUS;
+        if (END == plate)
+            END = PREVIOUS;
+        if (START == plate)
+            START = NEXT;
         stack->size--;
         ft_memdel((void**)&plate);
     }
@@ -94,10 +94,10 @@ void        ft_stackdel(t_stack *stack)
 
     if (stack)
     {
-        plate = stack->start;
+        plate = START;
         while (plate)
         {
-            tmp = plate->next;
+            tmp = NEXT;
             ft_stackdelplate(stack, plate);
             plate = tmp;
         }

@@ -23,11 +23,11 @@ t_stack         *stack_copy(t_stack *stack)
     new = ft_stackcreate();
     if (!new)
         return (new);
-    plate = stack->start;
+    plate = START;
     while (plate)
     {
-        ft_stackadd(new, plate->content);
-        plate = plate->next;
+        ft_stackadd(new, TOKEN);
+        plate = NEXT;
     }
     return (new);
 }
@@ -39,14 +39,14 @@ t_memory        *mem_copy(t_memory *mem)
     new = malloc(sizeof(t_memory));
     if (!new)
         return (new);
-    if (mem->type)
-        new->type = ft_strdup(mem->type);
+    if (TYPE)
+        new->type = ft_strdup(TYPE);
     else
         new->type = NULL;
-    new->chaine = ft_strdup(mem->chaine);
-    new->debug = mem->debug;
-    new->iter = mem->iter;
-    new->size = mem->size;
+    new->chaine = ft_strdup(CHAINE);
+    new->debug = DEBUG;
+    new->iter = ITER;
+    new->size = SIZE;
     new->func = NULL;
     new->stack_a = stack_copy(STACK_A);
     new->stack_b = stack_copy(STACK_B);
