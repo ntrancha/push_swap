@@ -62,7 +62,7 @@ void	trie(t_memory *mem)
 			swap_swap(mem, "rrb");
 		else if (TOKEN_A == min && !sort_a)
 			swap_swap(mem, "pb");
-		else if (PLATE_A->previous && TOKEN_A > NEXT_A->content)
+		else if (NEXT_A && TOKEN_A > NEXT_A->content)
 			swap_swap(mem, "sa");
 		else if (TOKEN_A > END_A->content)
 			swap_swap(mem, "rra");
@@ -153,7 +153,7 @@ int		push_swap(int size, char **tab)
 	STACK_A = ft_stackcreate();
 	STACK_B = ft_stackcreate();
 	FUNC = NULL;
-	DEBUG = 0;
+	DEBUG = 1;
 	ITER = 0;
 	CHAINE = ft_strnew(0);
 	TYPE = NULL;
