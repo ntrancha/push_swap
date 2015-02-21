@@ -13,7 +13,11 @@
 #ifndef STACK_H
 # define STACK_H
 # include <libft.h>
+# define BRUTE(X)	brute_force(swap_swap(mem_copy(mem), X), brute);
+# define LAST(X)	ft_strcmp(last, X)
 # define CONTENTS	ft_stackcontent
+# define MIN		brute->min
+# define CODE		brute->code
 # define STACK_A	mem->stack_a
 # define STACK_B	mem->stack_b
 # define TYPE		mem->type

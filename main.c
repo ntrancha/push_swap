@@ -19,10 +19,10 @@ void	memory_del(t_memory *mem)
 {
 	if (mem)
 	{
-		if (mem->chaine)
-			ft_strdel(&(mem->chaine));
-		if (mem->type)
-			ft_strdel(&(mem->type));
+		if (CHAINE)
+			ft_strdel(&(CHAINE));
+		if (TYPE)
+			ft_strdel(&(TYPE));
 		ft_stackdel(STACK_A);
 		ft_stackdel(STACK_B);
 		//ft_memdel((void**)&mem);
@@ -40,7 +40,7 @@ void	trie(t_memory *mem)
 	int		mid;
 
 	count = 0;
-	while (count++ < 100 && (STACK_B->size || count < 5))
+	while (count++ < 100 && (SIZE_B || count < 5))
 	{
 		max = find_max(STACK_A);
 		min = find_min(STACK_A, max);
@@ -49,24 +49,24 @@ void	trie(t_memory *mem)
 		mid = 0;
 		if (is_sort(STACK_A))
 			sort_a = 1;
-		if (STACK_B->size && is_unsort(STACK_B))
+		if (SIZE_B && is_unsort(STACK_B))
 			sort_b = 1;
 		if (is_middle(mem))
 			mid = 1;
-		if (STACK_B->size > 1 && PLATE_B->content < PLATE_B->previous->content)
+		if (SIZE_B > 1 && TOKEN_B < NEXT_B->content)
 		{
 			swap_swap(mem, "sb");
 			swap_swap(mem, "pa");
 		}
-		else if (STACK_B->size > 1 && PLATE_B->content < STACK_B->start->content)
+		else if (SIZE_B > 1 && TOKEN_B < END_B->content)
 			swap_swap(mem, "rrb");
-		else if (PLATE_A->content == min && !sort_a)
+		else if (TOKEN_A == min && !sort_a)
 			swap_swap(mem, "pb");
-		else if (PLATE_A->previous && PLATE_A->content > PLATE_A->previous->content)
+		else if (PLATE_A->previous && TOKEN_A > NEXT_A->content)
 			swap_swap(mem, "sa");
-		else if (PLATE_A->content > STACK_A->start->content)
+		else if (TOKEN_A > END_A->content)
 			swap_swap(mem, "rra");
-		else if (!STACK_B->size || !sort_a)
+		else if (!SIZE_B || !sort_a)
 			swap_swap(mem, "pb");
 		else
 			swap_swap(mem, "pa");
@@ -83,7 +83,7 @@ int				brute_force(t_memory *mem, t_brute *brute)
 	int			sort_b;
 
 	last = NULL;
-	if (mem->iter < brute->min - 1 && !is_sort(STACK_A))
+	if (ITER < MIN && !is_sort(STACK_A))
 	{
 		if (last)
 			ft_strdel(&last);
@@ -92,50 +92,50 @@ int				brute_force(t_memory *mem, t_brute *brute)
 		min = find_min(STACK_A, max);
 		sort_a = is_sort(STACK_A);
 		sort_b = 0;
-		if (STACK_B->size > 0 && is_unsort(STACK_B))
+		if (SIZE_B > 0 && is_unsort(STACK_B))
 			sort_b = 1;
-		if (ft_strcmp(last, ";pb") != 0 && SIZE_B > 0)
-			brute_force(swap_swap(mem_copy(mem), "pa"), brute);
+		if (LAST(";pb") != 0 && SIZE_B > 0)
+			BRUTE("pa");
 		if (!sort_a)
 		{
-			if (ft_strcmp(last, ",ra") != 0 && STACK_A->size > 2)	
-				brute_force(swap_swap(mem_copy(mem), "rra"), brute);
-			if (ft_strcmp(last, "rra") != 0 && STACK_A->size > 2)	
-				brute_force(swap_swap(mem_copy(mem), "ra"), brute);
-			if (ft_strcmp(last, ";sa") && ft_strcmp(last, ";sb") && SIZE_A > 1)
-				brute_force(swap_swap(mem_copy(mem), "sa"), brute);
-			if (ft_strcmp(last, ";pa") != 0 && STACK_A->size > 2)	
-				brute_force(swap_swap(mem_copy(mem), "pb"), brute);
+			if (LAST(",ra") != 0 && SIZE_A > 2)	
+				BRUTE("rra");
+			if (LAST("rra") != 0 && SIZE_A > 2)	
+				BRUTE("ra");
+			if (LAST(";sa") && LAST(";sb") && SIZE_A > 1)
+				BRUTE("sa");
+			if (LAST(";pa") != 0 && SIZE_A > 2)	
+				BRUTE("pb");
 		}
 		//if (!sort_b)
 		//{
-			if (ft_strcmp(last, "rrb") != 0 && STACK_B->size > 2)	
-				brute_force(swap_swap(mem_copy(mem), "rb"), brute);
-			if (ft_strcmp(last, ";rb") != 0 && STACK_B->size > 2)	
-				brute_force(swap_swap(mem_copy(mem), "rrb"), brute);
-			if (ft_strcmp(last, ";sb") && ft_strcmp(last, ";sa") && SIZE_B > 1)
-				brute_force(swap_swap(mem_copy(mem), "sb"), brute);
+			if (LAST("rrb") != 0 && SIZE_B > 2)	
+				BRUTE("rb");
+			if (LAST(";rb") != 0 && SIZE_B > 2)	
+				BRUTE("rrb");
+			if (LAST(";sb") && LAST(";sa") && SIZE_B > 1)
+				BRUTE("sb");
 		//}
-		if (STACK_A->size > 1 && STACK_B->size > 1 && ft_strcmp(last, ";rr") != 0 )
-			brute_force(swap_swap(mem_copy(mem), "rrr"), brute);
-		if (STACK_A->size > 1 && STACK_B->size > 1 && ft_strcmp(last, "ss") != 0 )
-			brute_force(swap_swap(mem_copy(mem), "ss"), brute);
-		if (STACK_A->size > 1 && STACK_B->size > 1 && ft_strcmp(last, "rrr") != 0 )
-			brute_force(swap_swap(mem_copy(mem), "rr"), brute);
+		if (SIZE_A > 1 && SIZE_B > 1 && LAST(";rr") != 0 )
+			BRUTE("rrr");
+		if (SIZE_A > 1 && SIZE_B > 1 && LAST("ss") != 0 )
+			BRUTE("ss");
+		if (SIZE_A > 1 && SIZE_B > 1 && LAST("rrr") != 0 )
+			BRUTE("rr");
 	}
-	if (is_sort(STACK_A) && !STACK_B->size)
+	if (is_sort(STACK_A) && !SIZE_B)
 	{
 		ft_strdel(&last);
-		if (mem->iter < brute->min)
+		if (ITER < MIN)
 		{
-			if (brute->code)
-				ft_strdel(&(brute->code));
-			brute->code = ft_strdup(mem->chaine);
-			brute->min = mem->iter;
+			if (CODE)
+				ft_strdel(&(CODE));
+			CODE = ft_strdup(CHAINE);
+			MIN = ITER;
 		}
-		ft_putnbr(mem->iter);
+		ft_putnbr(ITER);
 		ft_putstr("\t");
-		ft_putendl(mem->chaine);
+		ft_putendl(CHAINE);
 		print(mem);
 		memory_del(mem);
 		return (1);
@@ -150,28 +150,28 @@ int		push_swap(int size, char **tab)
 	t_memory	*mem;
 
 	mem = ft_memalloc(sizeof(t_memory));
-	mem->stack_a = ft_stackcreate();
-	mem->stack_b = ft_stackcreate();
-	mem->func = NULL;
-	mem->debug = 0;
-	mem->iter = 0;
-	mem->chaine = ft_strnew(0);
-	mem->type = NULL;
+	STACK_A = ft_stackcreate();
+	STACK_B = ft_stackcreate();
+	FUNC = NULL;
+	DEBUG = 0;
+	ITER = 0;
+	CHAINE = ft_strnew(0);
+	TYPE = NULL;
 	if (verif(size, tab) == 0 || test_double(1, size, tab) == 0)
 		return (error());
 	if (start(size, tab, STACK_A) == 0)
 		return (0);
-	mem->size = STACK_A->size;
+	mem->size = SIZE_A;
 	//print_stack(mem);
 	//print(mem);
 	//swap_swap(mem, "sa");
 	//trie(mem);
 	brute = malloc(sizeof(t_brute));
-	brute->min = mem->size +  (mem->size / 2);
-	brute->code = NULL;
+	MIN = mem->size +  (mem->size / 2);
+	CODE = NULL;
 	brute_force(mem, brute);
-	ft_putendl(brute->code);
-	ft_strdel(&(brute->code));
+	ft_putendl(CODE);
+	ft_strdel(&(CODE));
 	ft_memdel((void**)&brute);
 	//memory_del(mem);
 	//print_stack(mem);
