@@ -92,7 +92,7 @@ static void stackswapplate(t_stack *stack, t_plate *plate, t_plate *plate2)
 
 void        ft_stackswap(t_stack *stack, t_plate *plate, t_plate *plate2)
 {
-    if (stack && plate && plate2 && CONTENTS(stack, plate) && CONTENTS(stack, plate2))
+    if (plate && plate2 && CONTENTS(stack, plate) && CONTENTS(stack, plate2))
     {
         if (plate->next == plate2)
             stackswapplate2(stack, plate);

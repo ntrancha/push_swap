@@ -36,5 +36,5 @@ void        swap_rb(t_memory *mem)
 void        swap_rr(t_memory *mem)
 {
     swap_ra(mem);
-    swap_ra(mem);
+    swap_rb(mem);
 }

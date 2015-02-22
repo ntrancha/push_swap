@@ -82,7 +82,7 @@ t_memory    *swap_swap(t_memory *mem, char *swap)
         mem->type = ft_strdup(swap);
     if (mem->type)
         swap_action(mem);
-    else if (mem->debug)
+    else if (DEBUG)
         ft_putendl("ACTION INCONNU");
 	return (mem);
 }

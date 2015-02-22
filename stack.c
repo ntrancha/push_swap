@@ -35,7 +35,7 @@ t_stack		*ft_stackadd(t_stack *stack, int content)
     if (!stack)
         stack = ft_stackcreate();
     plate = ft_memalloc(sizeof(t_plate));
-    if (!plate) 
+    if (!plate)
         return (NULL);
     TOKEN = content;
     NEXT = NULL;
@@ -56,7 +56,7 @@ t_stack		*ft_stackaddfirst(t_stack *stack, int content)
     if (!stack)
         stack = ft_stackcreate();
     plate = ft_memalloc(sizeof(t_plate));
-    if (!plate) 
+    if (!plate)
         return (NULL);
     TOKEN = content;
     NEXT = START;
@@ -64,7 +64,7 @@ t_stack		*ft_stackaddfirst(t_stack *stack, int content)
     if (START)
         START->previous = plate;
     else
-        END = plate; 
+        END = plate;
     START = plate;
     stack->size++;
     return (stack);

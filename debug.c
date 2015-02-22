@@ -15,132 +15,144 @@
 #include <stdlib.h>
 #include "stack.h"
 
-void        print_swap(t_memory *mem)
+void	print_option(t_memory *mem)
 {
-    if (mem->debug == 1)
-    {
-        ft_putstr(mem->type);
-        ft_putstr("\t");
-        if (!ft_strcmp(mem->type, "pa") && STACK_B->size)
-        {
-            ft_putstr("[STACK B] ===> [STACK A]\t");
-            ft_putnbr(STACK_B->end->content);
-        }
-        else if (!ft_strcmp(mem->type, "pb") && STACK_A->size)
-        {
-            ft_putstr("[STACK A] ===> [STACK B]\t");
-            ft_putnbr(STACK_A->end->content);
-        }
-        else if (!ft_strcmp(mem->type, "ss") && STACK_B->size > 1 && STACK_A->size > 1)
-        {
-            ft_putstr("[STACK A] <--> [STACK B]\t");
-            ft_putnbr(STACK_A->end->content);
-            ft_putchar(' ');
-            ft_putnbr(STACK_A->end->previous->content);
-            ft_putchar('\t');
-            ft_putnbr(STACK_B->end->content);
-            ft_putchar(' ');
-            ft_putnbr(STACK_B->end->previous->content);
-        }
-        else if (!ft_strcmp(mem->type, "sb") && STACK_B->size > 1)
-        {
-            ft_putstr("[STACK B] <-->\t\t");
-            ft_putnbr(STACK_B->end->content);
-            ft_putchar(' ');
-            ft_putnbr(STACK_B->end->previous->content);
-        }
-        else if (!ft_strcmp(mem->type, "sa") && STACK_A->size > 1)
-        {
-            ft_putstr("[STACK A] <-->\t\t");
-            ft_putnbr(STACK_A->end->content);
-            ft_putchar(' ');
-            ft_putnbr(STACK_A->end->previous->content);
-        }
-        else if (!ft_strcmp(mem->type, "rra") && STACK_A->size > 1)
-        {
-            ft_putstr("[STACK A] <<<<\t\t");
-            ft_putnbr(STACK_A->end->content);
-        }
-        else if (!ft_strcmp(mem->type, "rrb") && STACK_B->size > 1)
-        {
-            ft_putstr("[STACK B] <<<<\t\t");
-            ft_putnbr(STACK_B->end->content);
-        }
-        else if (!ft_strcmp(mem->type, "rrr") && STACK_A->size > 1 && STACK_B->size > 1)
-        {
-            ft_putstr("[STACK A] <<<< [STACK B]\t");
-            ft_putnbr(STACK_B->end->content);
-        }
-        else if (!ft_strcmp(mem->type, "ra") && STACK_A->size > 1)
-        {
-            ft_putstr("[STACK A] >>>>\t\t");
-            ft_putnbr(STACK_A->end->content);
-        }
-        else if (!ft_strcmp(mem->type, "rb") && STACK_B->size > 1)
-        {
-            ft_putstr("[STACK B] >>>>\t\t");
-            ft_putnbr(STACK_B->end->content);
-        }
-        else if (!ft_strcmp(mem->type, "rr") && STACK_A->size > 1 && STACK_B->size > 1)
-        {
-            ft_putstr("[STACK A] >>>> [STACK B]\t");
-            ft_putnbr(STACK_B->end->content);
-        }
-        else
-            ft_putstr("OPERATION IMPOSSIBLE");
-        ft_putchar('\n');
-    }
-    mem->func(mem);
+	LINE;
+	ft_putstr("\nDebug\t\t: \033[32mOn\033[37m\nPrint\t\t: ");
+	if (PRINT)
+		ft_putstr("\033[32mOn\033[37m");
+	else
+		ft_putstr("\033[31mOff\033[37m");
+	ft_putstr("\nBrute force\t: ");
+	if (mem->brute->brute)
+		ft_putstr("\033[32mOn\033[37m");
+	else
+		ft_putstr("\033[31mOff\033[37m");
+	ft_putstr("\nPost code\t: ");
+	if (mem->brute->pre_code)
+		ft_putstr(mem->brute->commande);
+	else
+		ft_putstr("\033[31mOff\033[37m");
+	ft_putstr("\nAll\t\t: ");
+	if (mem->brute->all)
+		ft_putstr("\033[32mOn\033[37m");
+	else
+		ft_putstr("\033[31mOff\033[37m");
+	ft_putstr("\nColor\t\t: ");
+	if (mem->brute->color)
+		ft_putstr("\033[32mOn\033[37m");
+	else
+		ft_putstr("\033[31mOff\033[37m");
+	ft_putstr("\nStack\t\t: ");
+	if (mem->brute->stack)
+		ft_putstr("\033[32mOn\033[37m");
+	else
+		ft_putstr("\033[31mOff\033[37m");
+	ft_putstr("\nNothing\t\t: ");
+	if (mem->brute->nothing)
+		ft_putstr("\033[32mOn\033[37m");
+	else
+		ft_putstr("\033[31mOff\033[37m");
+	ft_putchar('\n');
+	LINE;
+	ft_putstr("\n\n");
 }
 
-void    print_stack(t_memory *mem)
+void    print_stack_next(t_memory *mem)
 {
     t_plate *plate_a;
     t_plate *plate_b;
 
-    plate_a = STACK_A->start;
-    plate_b = STACK_B->start;
-    ft_putstr("--------------------------\nSTACK A\t\tSTACK B\n--------------------------");
-    ft_putendl("\t<-- Bas de la pile");
+    plate_a = STACK_A->end;
+    plate_b = STACK_B->end;
     while (plate_a || plate_b)
     {
         if (plate_a)
         {
             ft_putnbr(plate_a->content);
-            plate_a = plate_a->next;
+            plate_a = plate_a->previous;
         }
         ft_putstr("\t\t");
         if (plate_b)
         {
             ft_putnbr(plate_b->content);
-            plate_b = plate_b->next;
+            plate_b = plate_b->previous;
         }
         ft_putchar('\n');
     }
-    ft_putendl("-------------------------\t<-- Haut de la pile");
+}
+void    print_stack(t_memory *mem)
+{
+	if (mem->brute->color)
+		BLUE;
+    ft_putstr("--------------------------\nSTACK A\t\tSTACK B\n");
+    ft_putstr("--------------------------");
+	if (mem->brute->color)
+		WHITE;
+	ft_putendl("\t<-- Haut de la pile");
+	print_stack_next(mem);
+	if (mem->brute->color)
+		BLUE;
+    ft_putstr("--------------------------");
+	if (mem->brute->color)
+		WHITE;
+	ft_putendl("\t<-- Bas de la pile");
 }
 
-void    debug(t_stack *stack)
+void    debug(t_stack *stack, t_memory *mem)
 {
     t_plate *plate;
     int     nbr;
+	int		count;
 
-    plate = stack->start;
+    plate = END;
     while (plate)
     {
-        nbr = plate->content;
+        nbr = TOKEN;
+		if (mem->brute->color)
+		{
+			if (ft_strcmp(TYPE, "pa") == 0)
+				if (nbr == STACK_A->end->content)
+					RED;
+			if (ft_strcmp(TYPE, "sa") == 0 || ft_strcmp(TYPE, "ss") == 0)
+				if (nbr == TOKEN_A || nbr == NEXT_A->content)
+					GREEN;
+			if (ft_strcmp(TYPE, "pb") == 0)
+				if (nbr == STACK_B->end->content)
+					RED;
+			if (ft_strcmp(TYPE, "sb") == 0 || ft_strcmp(TYPE, "ss") == 0)
+				if (nbr == TOKEN_B || nbr == NEXT_B->content)
+					GREEN;
+			if (ft_strcmp(TYPE, "ra") == 0 || ft_strcmp(TYPE, "rr") == 0)
+				YELLOW;
+			if (ft_strcmp(TYPE, "rra") == 0 || ft_strcmp(TYPE, "rrr") == 0)
+				BLUE;
+			if (ft_strcmp(TYPE, "rb") == 0 || ft_strcmp(TYPE, "rr") == 0)
+				YELLOW;
+			if (ft_strcmp(TYPE, "rrb") == 0 || ft_strcmp(TYPE, "rrr") == 0)
+				BLUE;
+		}
         ft_putnbr(nbr);
+		if (mem->brute->color)
+			WHITE;
         ft_putchar(' ');
-        plate = plate->next;
+        plate = PREVIOUS;
     }
 }
 
 void    print(t_memory *mem)
 {
     ft_putstr("stack A: ");
-    debug(STACK_A);
+	if (mem->brute->color)
+    debug(STACK_A, mem);
+	if (mem->brute->color)
+		WHITE;
     ft_putchar('\n');
     ft_putstr("stack B: ");
-    debug(STACK_B);
-    ft_putstr("\n--------------------------\n");
+    debug(STACK_B, mem);
+	if (mem->brute->color)
+		WHITE;
+    ft_putstr("\n");
+	LINE;
+    ft_putstr("\n");
 }

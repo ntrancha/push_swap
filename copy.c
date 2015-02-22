@@ -44,10 +44,10 @@ t_memory        *mem_copy(t_memory *mem)
     else
         new->type = NULL;
     new->chaine = ft_strdup(CHAINE);
-    new->debug = DEBUG;
     new->iter = ITER;
     new->size = SIZE;
     new->func = NULL;
+	new->brute = mem->brute;
     new->stack_a = stack_copy(STACK_A);
     new->stack_b = stack_copy(STACK_B);
     return (new);
