@@ -23,6 +23,11 @@
 # define GREEN		print_color(2)
 # define YELLOW		print_color(3)
 # define BLUE		print_color(4)
+# define L_RED		print_color(5)
+# define L_GREEN	print_color(6)
+# define L_YELLOW	print_color(7)
+# define L_BLUE		print_color(8)
+# define L_WHITE	print_color(9)
 
 # define FIND		mem->brute->find
 # define MIN		mem->brute->min

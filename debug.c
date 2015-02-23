@@ -84,7 +84,7 @@ void    print_stack_next(t_memory *mem)
 void    print_stack(t_memory *mem)
 {
 	if (mem->brute->color)
-		BLUE;
+		L_RED;
     ft_putendl("--------------------------");
 	if (mem->brute->color)
 		WHITE;
@@ -97,7 +97,7 @@ void    print_stack(t_memory *mem)
 	ft_putstr("Size of stacks\t: ");
 	ft_putnbr_endl(mem->size);
 	if (mem->brute->color)
-		BLUE;
+		L_RED;
     ft_putendl("--------------------------\nSTACK A\t\tSTACK B");
     ft_putstr("--------------------------");
 	if (mem->brute->color)
@@ -105,7 +105,7 @@ void    print_stack(t_memory *mem)
 	ft_putendl("\t<-- Haut de la pile");
 	print_stack_next(mem);
 	if (mem->brute->color)
-		BLUE;
+		L_RED;
     ft_putstr("--------------------------");
 	if (mem->brute->color)
 		WHITE;

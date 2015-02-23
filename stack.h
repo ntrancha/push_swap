@@ -37,6 +37,8 @@ t_memory	*get_arg(int size, char **tab);
 int			verif(int size, char **tab, t_brute *brute);
 int			start(int size, char **tab, t_stack *stack);
 
+int			option(char *argv, t_brute *brute);
+
 void		memory_del(t_memory *mem);
 t_memory	*mem_copy(t_memory *mem);
 t_memory	*memory_create(void);

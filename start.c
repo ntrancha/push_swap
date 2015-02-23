@@ -15,40 +15,6 @@
 #include <stdlib.h>
 #include "stack.h"
 
-int		option(char	*argv, t_brute *brute)
-{
-	if (ft_strcmp(argv, "-d") == 0)
-		brute->debug = 1;
-	else if (ft_strcmp(argv, "-p") == 0)
-		brute->print = 1;
-	else if (ft_strcmp(argv, "-b") == 0)
-		brute->brute = 1;
-	else if (ft_strcmp(argv, "-s") == 0)
-		brute->step = 1;
-	else if (ft_strcmp(argv, "-a") == 0)
-		brute->all = 1;
-	else if (ft_strcmp(argv, "-n") == 0)
-		brute->nothing = 1;
-	else if (ft_strcmp(argv, "-c") == 0)
-		brute->color = 1;
-	else if (ft_strcmp(argv, "-h") == 0)
-		brute->help = 1;
-	else if (ft_strcmp(argv, "-v") == 0)
-		brute->stack = 1;
-	else if (ft_strcmp(argv, "-s1") == 0)
-		brute->sort = 1;
-	else if (ft_strcmp(argv, "-s2") == 0)
-		brute->sort = 2;
-	else if (ft_strcmp(argv, "-P") == 0)
-	{
-		brute->pre_code = 1;
-		return (-1);
-	}
-	else
-		return (0);
-	return (1);
-}
-
 t_memory	*error(void)
 {
     ft_putendl_fd("Error", 2);
@@ -93,6 +59,34 @@ int     start(int size, char **tab, t_stack *stack)
     return (1);
 }
 
+t_memory		*help(void)
+{
+	ft_putendl("NAME\n\tpush_swap - Sort a stack of token\n");
+	ft_putendl("SYNOPSIS\n\t./push_swap [OPTION]... [STACK]...\n");
+	ft_putendl("DESCRIPTION\n\tSort stack");
+	ft_putendl("\nOPTIONS\n\t-h, --help\tHelp\n");
+	ft_putendl("\t-c, --color\tColor mode\n");
+	ft_putendl("\t-p, --print\tPrint stacks\n");
+	ft_putendl("\t-d, --debug\tPrint infos\n");
+	ft_putendl("\t-v, --stack\tPrint stacks for every step\n");
+	ft_putendl("\t-s, --sort\tType of sort\n");
+	ft_putendl("\t-b, --brute\tBrute force\n");
+	ft_putendl("\t-a, --all\tAll solutions (require --brute)\n");
+	ft_putendl("\t-P, --put\tPut instructions\n");
+	ft_putendl("\t-n, --nothing\tDon't sort stacks (require --put)");
+	ft_putendl("\nACTIONS\n\t\033[33mra\t\tRotate stack A\n");
+	ft_putendl("\trb\t\tRotate stack B\n\n\trr\t\tRotate stack A & B\n");
+	ft_putendl("\t\033[36mrra\t\tReverse rotate stack A\n");
+	ft_putendl("\trrb\t\tReverse rotate stack B\n");
+	ft_putendl("\trrr\t\tReverse rotate stack A & B\n");
+	ft_putendl("\033[32m\tsa\t\tSwicth the two first elements of stack A\n");
+	ft_putendl("\tsb\t\tSwicth the two first elements of stack B\n");
+	ft_putendl("\tss\t\tSwicth the two first elements of stack A & B\n");
+	ft_putendl("\t\033[31mpa\t\tPush on stack A\n");
+	ft_putendl("\tpb\t\tPush on stack B\033[37m\n");
+	return (NULL);
+}
+
 t_memory	*get_arg(int size, char **tab)
 {
 	t_brute     *brute;
@@ -102,6 +96,14 @@ t_memory	*get_arg(int size, char **tab)
     brute = mem->brute;
     if (verif(size, tab, brute) == 0 || test_double(1, size, tab) == 0)
         return (error());
+	if (HELP)
+		return (help());
+	if (PRINT && DEBUG)
+		PRINT = 0;
+	if (ALL)
+		FORCE = 1;
+	if (NOTHING)
+		SORT = 0;
     if (start(size, tab, STACK_A) == 0)
         return (NULL);
     mem->size = SIZE_A;
