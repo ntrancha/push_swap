@@ -44,7 +44,7 @@ typedef struct		s_brute
 	int				nothing;
 	char			*commande;
 	char			*code;
-	
+	t_stack			*origine;
 }					t_brute;
 
 typedef struct		s_memory

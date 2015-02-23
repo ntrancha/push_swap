@@ -43,6 +43,7 @@
 # define HELP		mem->brute->help
 # define ALL		mem->brute->all
 # define SORT		mem->brute->sort
+# define ORIGINE	mem->brute->origine
 
 # define STACK_A	mem->stack_a
 # define STACK_B	mem->stack_b

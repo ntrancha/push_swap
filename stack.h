@@ -76,4 +76,6 @@ void		swap_action(t_memory *mem);
 t_memory	*swap_swap(t_memory *mem, char *swap);
 void		rotate(t_memory *mem, t_stack *stack, int max);
 
+int			stack_cmp(t_stack *stack_a, t_stack *stack_b);
+
 #endif

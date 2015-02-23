@@ -96,6 +96,7 @@ void    print_stack(t_memory *mem)
 	ft_putnbr_endl(mem->iter);
 	ft_putstr("Size of stacks\t: ");
 	ft_putnbr_endl(mem->size);
+	ft_putnbr_endl(mem->iter);
 	if (mem->brute->color)
 		L_RED;
     ft_putendl("--------------------------\nSTACK A\t\tSTACK B");

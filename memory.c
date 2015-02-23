@@ -38,6 +38,7 @@ t_brute     *brute_create(void)
         return (NULL);
     brute->code = NULL;
     brute->commande = NULL;
+    brute->origine = NULL;
     brute->pre_code = 0;
     brute->debug = 0;
     brute->print = 0;
@@ -66,6 +67,7 @@ t_memory    *memory_create(void)
     ITER = 0;
     CHAINE = ft_strnew(0);
     TYPE = NULL;
+	ORIGINE = stack_copy(STACK_A);
     mem->brute = brute_create();
     return (mem);
 }
