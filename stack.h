@@ -38,6 +38,7 @@ int			verif(int size, char **tab, t_brute *brute);
 int			start(int size, char **tab, t_stack *stack);
 
 int			option(char *argv, t_brute *brute);
+t_memory	*help(void);
 
 void		memory_del(t_memory *mem);
 t_memory	*mem_copy(t_memory *mem);
