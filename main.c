@@ -82,6 +82,8 @@ int		push_swap(int size, char **tab)
 	brute = mem->brute;
 	if (mem->brute->brute)
 	{
+		if (mem->size > 6)
+			ft_putendl_fd("This operation can be long", 2);
 		mem_cpy = mem_copy(mem);
 		brute_force(mem, brute);
 		mem = mem_cpy;

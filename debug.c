@@ -85,7 +85,20 @@ void    print_stack(t_memory *mem)
 {
 	if (mem->brute->color)
 		BLUE;
-    ft_putstr("--------------------------\nSTACK A\t\tSTACK B\n");
+    ft_putendl("--------------------------");
+	if (mem->brute->color)
+		WHITE;
+	if (mem->chaine)
+		ft_putendl(mem->chaine);
+	if (mem->brute->code)
+		ft_putendl(mem->brute->code);
+	ft_putstr("Iteration(s)\t: ");
+	ft_putnbr_endl(mem->iter);
+	ft_putstr("Size of stacks\t: ");
+	ft_putnbr_endl(mem->size);
+	if (mem->brute->color)
+		BLUE;
+    ft_putendl("--------------------------\nSTACK A\t\tSTACK B");
     ft_putstr("--------------------------");
 	if (mem->brute->color)
 		WHITE;
@@ -109,7 +122,7 @@ void    debug(t_stack *stack, t_memory *mem)
     while (plate)
     {
         nbr = TOKEN;
-		if (mem->brute->color)
+		if (mem->brute->color && TYPE && !mem->brute->print)
 		{
 			if (ft_strcmp(TYPE, "pa") == 0)
 				if (nbr == STACK_A->end->content)

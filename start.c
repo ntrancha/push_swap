@@ -35,6 +35,10 @@ int		option(char	*argv, t_brute *brute)
 		brute->help = 1;
 	else if (ft_strcmp(argv, "-v") == 0)
 		brute->stack = 1;
+	else if (ft_strcmp(argv, "-s1") == 0)
+		brute->sort = 1;
+	else if (ft_strcmp(argv, "-s2") == 0)
+		brute->sort = 2;
 	else if (ft_strcmp(argv, "-P") == 0)
 	{
 		brute->pre_code = 1;

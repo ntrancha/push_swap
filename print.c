@@ -55,9 +55,9 @@ void        print_next(t_memory *mem)
         else if (!ft_strcmp(TYPE, "sa") && SIZE_A > 1)
             print_two("[STACK A] <-->\t\t\t", TOKEN_A, NEXT_A->content);
         else if (!ft_strcmp(TYPE, "rra") && SIZE_A > 1)
-            print_one("[STACK A] <<<<\t\t\t", TOKEN_A);
+            print_one("[STACK A] <<<<\t\t\t", END_A->content);
         else if (!ft_strcmp(TYPE, "rrb") && SIZE_B > 1)
-            print_one("[STACK B] <<<<\t\t\t", TOKEN_B);
+            print_one("[STACK B] <<<<\t\t\t", END_B->content);
         else if (!ft_strcmp(TYPE, "rrr") && SIZE_A > 1 && SIZE_B > 1)
             print_one("[STACK A] <<<< [STACK B]\t", TOKEN_B);
         else if (!ft_strcmp(TYPE, "ra") && SIZE_A > 1)

@@ -48,6 +48,7 @@ t_brute     *brute_create(void)
     brute->color = 0;
     brute->help = 0;
     brute->stack = 0;
+    brute->sort = 1;
     brute->nothing = 0;
     brute->brute = 0;
     return (brute);
