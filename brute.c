@@ -57,6 +57,8 @@ void			brute_d(t_memory *mem, char *last)
 
 int				brute_end(t_memory *mem, char *last)
 {
+	if (ITER != 0 && stack_cmp(ORIGINE, STACK_A))
+		return (0);
 	if (is_sort(STACK_A) && !SIZE_B)
 	{
         ft_strdel(&last);

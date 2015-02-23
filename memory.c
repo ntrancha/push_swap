@@ -67,7 +67,6 @@ t_memory    *memory_create(void)
     ITER = 0;
     CHAINE = ft_strnew(0);
     TYPE = NULL;
-	ORIGINE = stack_copy(STACK_A);
     mem->brute = brute_create();
     return (mem);
 }

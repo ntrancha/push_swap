@@ -68,6 +68,7 @@ t_memory	*get_arg(int size, char **tab)
     brute = mem->brute;
     if (verif(size, tab, brute) == 0 || test_double(1, size, tab) == 0)
         return (error());
+	ORIGINE = stack_copy(STACK_A);
 	if (HELP)
 		return (help());
 	if (PRINT && DEBUG)
