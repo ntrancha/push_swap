@@ -44,6 +44,9 @@ void		memory_del(t_memory *mem);
 t_memory	*mem_copy(t_memory *mem);
 t_memory	*memory_create(void);
 
+void		algo_sort(t_memory *mem);
+void		sort(t_memory *mem);
+
 t_brute		*brute_create(void);
 int			post_code(t_memory *mem);
 int			brute_force(t_memory *mem, t_brute *brute);

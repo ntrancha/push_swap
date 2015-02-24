@@ -60,4 +60,17 @@ typedef struct		s_memory
 	t_brute			*brute;
 }					t_memory;
 
+typedef struct		s_status
+{
+	int				mid;
+	int				min_a;
+	int				min_b;
+	int				max_a;
+	int				max_b;
+	int				sort_a;
+	int				sort_b;
+	int				unsort_a;
+	int				unsort_b;
+}					t_status;
+
 #endif

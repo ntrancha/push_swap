@@ -24,7 +24,7 @@ void		action_first_print(t_memory *mem)
 
 void		action_sort(t_memory *mem)
 {
-	trie(mem);
+	sort(mem);
 	if (DEBUG)
 	{
 		ft_putchar('\n');

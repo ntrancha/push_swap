@@ -73,4 +73,14 @@
 # define START		stack->start
 # define END		stack->end
 
+# define MID		status->mid
+# define MIN_A		status->min_a
+# define MIN_B		status->min_b
+# define MAX_A		status->max_a
+# define MAX_B		status->max_b
+# define SORT_A		status->sort_a
+# define SORT_B		status->sort_b
+# define UNSORT_A	status->unsort_a
+# define UNSORT_B	status->unsort_b
+
 #endif

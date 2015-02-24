@@ -15,54 +15,13 @@
 #include <stdlib.h>
 #include "stack.h"
 
-void	trie(t_memory *mem)
-{
-	int		min;
-	int		max;
-	int		sort_a;
-	int		sort_b;
-	int		count;
-	int		mid;
-
-	count = 0;
-	while (count++ < 100 && (SIZE_B || count < 5))
-	{
-		max = find_max(STACK_A);
-		min = find_min(STACK_A, max);
-		sort_a = 0;
-		sort_b = 0;
-		mid = 0;
-		if (is_sort(STACK_A))
-			sort_a = 1;
-		if (SIZE_B && is_unsort(STACK_B))
-			sort_b = 1;
-		if (is_middle(mem))
-			mid = 1;
-		if (SIZE_B > 1 && TOKEN_B < NEXT_B->content)
-		{
-			swap_swap(mem, "sb");
-			swap_swap(mem, "pa");
-		}
-		else if (SIZE_B > 1 && TOKEN_B < END_B->content)
-			swap_swap(mem, "rrb");
-		else if (TOKEN_A == min && !sort_a)
-			swap_swap(mem, "pb");
-		else if (NEXT_A && TOKEN_A > NEXT_A->content)
-			swap_swap(mem, "sa");
-		else if (TOKEN_A > END_A->content)
-			swap_swap(mem, "rra");
-		else if (!SIZE_B || !sort_a)
-			swap_swap(mem, "pb");
-		else
-			swap_swap(mem, "pa");
-	}
-}
-
-int		push_swap(int size, char **tab)
+int		main(int argc, char **argv)
 {
 	t_memory	*mem;
 
-	mem = get_arg(size, tab);
+	if (argc == 1 && !error())
+		return (-1);
+	mem = get_arg((argc - 1), argv);
 	if (!mem)
 		return (0);
 	if (PRINT)
@@ -76,18 +35,5 @@ int		push_swap(int size, char **tab)
 		action_sort(mem);
 	else if (!mem->brute->nothing)
 		action_brute(mem);
-	return (1);
-}
-
-int		main(int argc, char **argv)
-{
-	if (argc == 1)
-	{
-		if (!error())
-			return (-1);
-	}
-	else
-		if (push_swap((argc - 1),argv) == 0)
-			return (0);
 	return (1);
 }
