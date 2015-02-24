@@ -60,85 +60,23 @@ void	trie(t_memory *mem)
 
 int		push_swap(int size, char **tab)
 {
-	t_brute		*brute;
 	t_memory	*mem;
-	t_memory	*mem_cpy;
-	int			test;
-	void (*put)	(char const *);
-	void (*del)	(void **);
 
 	mem = get_arg(size, tab);
-	put = display_endl;
-	del = ft_memdel;
 	if (!mem)
 		return (0);
 	if (PRINT)
 		print(mem);
 	if (DEBUG)
-	{
-		print_option(mem);
-		print_stack(mem);
-		ft_putchar('\n');
-	}
-	brute = mem->brute;
+		action_first_print(mem);
 	if (POST_CODE)
 		if (!post_code(mem))
 			return (0);
-	if (!brute->brute && !brute->nothing)
-	{
-		trie(mem);
-		if (DEBUG)
-		{
-			ft_putchar('\n');
-			print_stack(mem);
-		}
-		display_endl(mem->chaine);
-		return (1);
-	}
-	else if (!brute->nothing)
-	{
-		if (mem->size > 6)
-			ft_putendl_fd("This operation can be long", 2);
-		mem_cpy = mem_copy(mem);
-		brute_force(mem, brute);
-		mem = mem_cpy;
-		mem_cpy = mem_copy(mem);
-		FIND = 0;
-		brute_force(mem, brute);
-		if (!brute->all)
-			ft_putendl(brute->code);
-		else
-		{
-			if (brute->debug || brute->print)
-			{
-				ft_putnbr(brute->solution->size);
-				ft_putstr(" solution(s) (size: ");
-				ft_putnbr(brute->min);
-				ft_putendl(")");
-			}
-			ft_listputstr(brute->solution, put);
-			if (brute->debug || brute->print)
-			{
-				test = 0;
-				if (brute->debug)
-					test = 1;
-				mem_cpy->brute->brute = 0;
-				mem_cpy->brute->print = 0;
-				mem_cpy->brute->debug = 0;
-				mem_cpy->brute->commande = brute->solution->end->content;
-				post_code(mem_cpy);
-				ft_strdel(&mem_cpy->type);
-				if (test == 1)
-					print_stack(mem_cpy);
-				else
-					print(mem_cpy);
-			}
-		}
-		ft_listdel(brute->solution, del);
-		ft_strdel(&(brute->code));
-		ft_memdel((void**)&brute);
-		return (1);
-	}
+	if (!mem->brute->brute && !mem->brute->nothing)
+		action_sort(mem);
+	else if (!mem->brute->nothing)
+		action_brute(mem);
+	return (1);
 }
 
 int		main(int argc, char **argv)
