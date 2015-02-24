@@ -55,7 +55,6 @@ void	trie(t_memory *mem)
 			swap_swap(mem, "pb");
 		else
 			swap_swap(mem, "pa");
-		print(mem);
 	}
 }
 
@@ -81,11 +80,22 @@ int		push_swap(int size, char **tab)
 		print_stack(mem);
 		ft_putchar('\n');
 	}
+	brute = mem->brute;
 	if (POST_CODE)
 		if (!post_code(mem))
 			return (0);
-	brute = mem->brute;
-	if (mem->brute->brute)
+	if (!brute->brute && !brute->nothing)
+	{
+		trie(mem);
+		if (DEBUG)
+		{
+			ft_putchar('\n');
+			print_stack(mem);
+		}
+		display_endl(mem->chaine);
+		return (1);
+	}
+	else if (!brute->nothing)
 	{
 		if (mem->size > 6)
 			ft_putendl_fd("This operation can be long", 2);
@@ -129,14 +139,6 @@ int		push_swap(int size, char **tab)
 		ft_memdel((void**)&brute);
 		return (1);
 	}
-	if (PRINT)
-		print(mem);
-	if (DEBUG && !FORCE)
-	{
-		ft_putchar('\n');
-		print_stack(mem);
-	}
-	return (1);
 }
 
 int		main(int argc, char **argv)
