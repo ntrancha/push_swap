@@ -95,22 +95,22 @@ int		push_swap(int size, char **tab)
 		mem_cpy = mem_copy(mem);
 		FIND = 0;
 		brute_force(mem, brute);
-		if (!ALL)
+		if (!brute->all)
 			ft_putendl(brute->code);
 		else
 		{
-			if (DEBUG || PRINT)
+			if (brute->debug || brute->print)
 			{
 				ft_putnbr(SOLUTION->size);
 				ft_putstr(" solution(s) (size: ");
 				ft_putnbr(MIN);
 				ft_putendl(")");
 			}
-			ft_listputstr(SOLUTION, put);
-			if (DEBUG || PRINT)
+			ft_listputstr(brute->solution, put);
+			if (brute->debug || brute->print)
 			{
 				test = 0;
-				if (DEBUG)
+				if (brute->debug)
 					test = 1;
 				mem_cpy->brute->brute = 0;
 				mem_cpy->brute->print = 0;
@@ -123,7 +123,7 @@ int		push_swap(int size, char **tab)
 					print(mem_cpy);
 			}
 		}
-		ft_listdel(SOLUTION, del);
+		ft_listdel(brute->solution, del);
 		ft_strdel(&(brute->code));
 		ft_memdel((void**)&brute);
 		return (1);
