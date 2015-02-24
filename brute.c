@@ -76,15 +76,19 @@ int				brute_end(t_memory *mem, char *last)
             CODE = ft_strdup(CHAINE);
             MIN = ITER;
         }
-		if (PRINT && !FIND)
+		if (DEBUG && !FIND)
 		{
+			if (COLOR)
+				L_GREEN;
 	        ft_putnbr(ITER);
 	        ft_putstr("\t");
 	        ft_putendl(CHAINE);
+			if (COLOR)
+				WHITE;
 	        print(mem);
 		}
 		if ((ALL && !FIND))
-	        ft_putendl(CHAINE);
+			SOLUTION = ft_listadd(SOLUTION, ft_strdup(CHAINE));
         memory_del(mem);
         return (1);
 	}

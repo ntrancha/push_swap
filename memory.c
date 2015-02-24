@@ -39,6 +39,7 @@ t_brute     *brute_create(void)
     brute->code = NULL;
     brute->commande = NULL;
     brute->origine = NULL;
+    brute->solution = NULL;
     brute->pre_code = 0;
     brute->debug = 0;
     brute->print = 0;

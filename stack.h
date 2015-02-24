@@ -55,6 +55,9 @@ void		print_swap(t_memory *mem);
 void		print_color(int color);
 void		color(t_memory *mem);
 
+void		display(char const *str);
+void		display_endl(char const *str);
+
 int			find_min(t_stack *stack, int max);
 int			find_max(t_stack *stack);
 int			find_jump_start(t_stack *stack, int max);

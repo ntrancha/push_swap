@@ -44,6 +44,7 @@ typedef struct		s_brute
 	int				nothing;
 	char			*commande;
 	char			*code;
+	t_list			*solution;
 	t_stack			*origine;
 }					t_brute;
 

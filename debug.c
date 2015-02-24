@@ -180,6 +180,7 @@ void    debug(t_stack *stack, t_memory *mem)
 
 void    print(t_memory *mem)
 {
+    ft_putstr("--------------------------\n");
 	if (SIZE_A > 1 && is_sort(STACK_A) && COLOR)
 		L_GREEN;
 	if (SIZE_A > 1 && is_unsort(STACK_A) && COLOR)
@@ -201,7 +202,5 @@ void    print(t_memory *mem)
     debug(STACK_B, mem);
 	if (COLOR)
 		WHITE;
-    ft_putstr("\n");
-	LINE;
-    ft_putstr("\n");
+    ft_putstr("\n--------------------------\n");
 }

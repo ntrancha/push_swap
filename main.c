@@ -64,8 +64,13 @@ int		push_swap(int size, char **tab)
 	t_brute		*brute;
 	t_memory	*mem;
 	t_memory	*mem_cpy;
+	int			test;
+	void (*put)	(char const *);
+	void (*del)	(void **);
 
 	mem = get_arg(size, tab);
+	put = display_endl;
+	del = ft_memdel;
 	if (!mem)
 		return (0);
 	if (PRINT)
@@ -87,9 +92,38 @@ int		push_swap(int size, char **tab)
 		mem_cpy = mem_copy(mem);
 		brute_force(mem, brute);
 		mem = mem_cpy;
+		mem_cpy = mem_copy(mem);
 		FIND = 0;
 		brute_force(mem, brute);
-		ft_putendl(brute->code);
+		if (!ALL)
+			ft_putendl(brute->code);
+		else
+		{
+			if (DEBUG || PRINT)
+			{
+				ft_putnbr(SOLUTION->size);
+				ft_putstr(" solution(s) (size: ");
+				ft_putnbr(MIN);
+				ft_putendl(")");
+			}
+			ft_listputstr(SOLUTION, put);
+			if (DEBUG || PRINT)
+			{
+				test = 0;
+				if (DEBUG)
+					test = 1;
+				mem_cpy->brute->brute = 0;
+				mem_cpy->brute->print = 0;
+				mem_cpy->brute->debug = 0;
+				mem_cpy->brute->commande = SOLUTION->end->content;
+				post_code(mem_cpy);
+				if (test == 1)
+					print_stack(mem_cpy);
+				else
+					print(mem_cpy);
+			}
+		}
+		ft_listdel(SOLUTION, del);
 		ft_strdel(&(brute->code));
 		ft_memdel((void**)&brute);
 		return (1);
