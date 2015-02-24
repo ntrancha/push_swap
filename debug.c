@@ -88,15 +88,39 @@ void    print_stack(t_memory *mem)
     ft_putendl("--------------------------");
 	if (mem->brute->color)
 		WHITE;
-	if (mem->chaine)
-		ft_putendl(mem->chaine);
+	ft_putstr("Sequence\t: ");
 	if (mem->brute->code)
 		ft_putendl(mem->brute->code);
+	else if (mem->chaine && ft_strlen(mem->chaine) > 2)
+		ft_putendl(&(mem->chaine[1]));
 	ft_putstr("Iteration(s)\t: ");
 	ft_putnbr_endl(mem->iter);
 	ft_putstr("Size of stacks\t: ");
 	ft_putnbr_endl(mem->size);
-	ft_putnbr_endl(mem->iter);
+	ft_putstr("STACK A size\t: ");
+	ft_putnbr_endl(SIZE_A);
+	if (SIZE_A > 1 && COLOR && is_sort(STACK_A))
+		L_GREEN;
+	if (SIZE_A > 1 && is_sort(STACK_A))
+		ft_putendl("STACK A is sort");
+	if (SIZE_A > 2 && COLOR && is_unsort(STACK_A))
+		L_RED;
+	if (SIZE_A > 2 && is_unsort(STACK_A))
+		ft_putendl("STACK A is unsort");
+	if (COLOR)
+		WHITE;
+	ft_putstr("STACK B size\t: ");
+	ft_putnbr_endl(SIZE_B);
+	if (SIZE_B &&COLOR && is_sort(STACK_B))
+		L_GREEN;
+	if (SIZE_B && is_sort(STACK_B))
+		ft_putendl("STACK B is sort");
+	if (SIZE_B > 2 && COLOR && is_unsort(STACK_B))
+		L_RED;
+	if (SIZE_B > 2 && is_unsort(STACK_B))
+		ft_putendl("STACK B is unsort");
+	if (COLOR)
+		WHITE;
 	if (mem->brute->color)
 		L_RED;
     ft_putendl("--------------------------\nSTACK A\t\tSTACK B");
@@ -156,15 +180,26 @@ void    debug(t_stack *stack, t_memory *mem)
 
 void    print(t_memory *mem)
 {
+	if (SIZE_A > 1 && is_sort(STACK_A) && COLOR)
+		L_GREEN;
+	if (SIZE_A > 1 && is_unsort(STACK_A) && COLOR)
+		L_RED;
     ft_putstr("stack A: ");
-	if (mem->brute->color)
+	if (COLOR)
+		WHITE;
     debug(STACK_A, mem);
 	if (mem->brute->color)
 		WHITE;
     ft_putchar('\n');
+	if (SIZE_B > 1 && is_sort(STACK_B) && COLOR)
+		L_GREEN;
+	if (SIZE_B > 1 && is_unsort(STACK_B) && COLOR)
+		L_RED;
     ft_putstr("stack B: ");
+	if (COLOR)
+		WHITE;
     debug(STACK_B, mem);
-	if (mem->brute->color)
+	if (COLOR)
 		WHITE;
     ft_putstr("\n");
 	LINE;

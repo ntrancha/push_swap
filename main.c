@@ -92,10 +92,11 @@ int		push_swap(int size, char **tab)
 		ft_putendl(brute->code);
 		ft_strdel(&(brute->code));
 		ft_memdel((void**)&brute);
+		return (1);
 	}
 	if (PRINT)
 		print(mem);
-	if (DEBUG)
+	if (DEBUG && !FORCE)
 	{
 		ft_putchar('\n');
 		print_stack(mem);
