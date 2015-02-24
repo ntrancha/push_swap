@@ -101,9 +101,9 @@ int		push_swap(int size, char **tab)
 		{
 			if (brute->debug || brute->print)
 			{
-				ft_putnbr(SOLUTION->size);
+				ft_putnbr(brute->solution->size);
 				ft_putstr(" solution(s) (size: ");
-				ft_putnbr(MIN);
+				ft_putnbr(brute->min);
 				ft_putendl(")");
 			}
 			ft_listputstr(brute->solution, put);
@@ -115,8 +115,9 @@ int		push_swap(int size, char **tab)
 				mem_cpy->brute->brute = 0;
 				mem_cpy->brute->print = 0;
 				mem_cpy->brute->debug = 0;
-				mem_cpy->brute->commande = SOLUTION->end->content;
+				mem_cpy->brute->commande = brute->solution->end->content;
 				post_code(mem_cpy);
+				ft_strdel(&mem_cpy->type);
 				if (test == 1)
 					print_stack(mem_cpy);
 				else
