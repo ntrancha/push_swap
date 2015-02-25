@@ -81,17 +81,17 @@ void			print_status(t_status *status, t_memory *mem)
 int     is_sort_token(int a, int sa, int ta)
 {
     if (a < sa && sa < ta)
-        return (0);
+        return (123);
     if (ta < sa && ta > a)
-        return (1);
+        return (132);
     if (a > sa && a < ta)
-        return (2);
+        return (213);
     if (a < sa && ta < a)
-        return (3);
+        return (231);
     if (a > ta && ta > sa)
-        return (4);
+        return (312);
     if (a > sa && sa > ta)
-        return (5);
+        return (321);
     return (-1);
 }
 
