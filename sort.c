@@ -37,23 +37,23 @@ void			algo_sort(t_memory *mem)
 	t_status	*status;
 
 	status = status_create(mem);
-	if (SIZE_B > 1 && TOKEN_B < NEXT_B->content)
+	if (SIZE_B > 1 && TOKEN_B < TOKEN_NB)
 	{
-		swap_swap(mem, "sb");
-		swap_swap(mem, "pa");
+		SWAP_SB;
+		SWAP_PA;
 	}
-	else if (SIZE_B > 1 && TOKEN_B < END_B->content)
-		swap_swap(mem, "rrb");
+	else if (SIZE_B > 1 && TOKEN_B < TOKEN_EB)
+		SWAP_RRB;
 	else if (TOKEN_A == MIN_A && !SORT_A)
-		swap_swap(mem, "pb");
-	else if (NEXT_A && TOKEN_A > NEXT_A->content)
-		swap_swap(mem, "sa");
-	else if (TOKEN_A > END_A->content)
-		swap_swap(mem, "rra");
+		SWAP_PB;
+	else if (NEXT_A && TOKEN_A > TOKEN_NA)
+		SWAP_SA;
+	else if (TOKEN_A > TOKEN_EA)
+		SWAP_RRA;
 	else if (!SIZE_B || !SORT_A)
-		swap_swap(mem, "pb");
+		SWAP_PB;
 	else
-		swap_swap(mem, "pa");
+		SWAP_PA;
 	ft_memdel((void**)&status);
 }
 

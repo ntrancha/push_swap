@@ -64,7 +64,11 @@
 # define NEXT_A		PLATE_A->previous
 # define NEXT_B		PLATE_B->previous
 # define TOKEN_A	PLATE_A->content
+# define TOKEN_NA	NEXT_A->content
+# define TOKEN_EA	END_A->content
 # define TOKEN_B	PLATE_B->content
+# define TOKEN_NB	NEXT_B->content
+# define TOKEN_EB	END_B->content
 
 # define TOKEN		plate->content
 # define NEXT		plate->next
@@ -83,16 +87,16 @@
 # define UNSORT_A	status->unsort_a
 # define UNSORT_B	status->unsort_b
 
-# define SWAP_PA	swap_swap(mem, "pa");
-# define SWAP_PB	swap_swap(mem, "pb");
-# define SWAP_SA	swap_swap(mem, "sa");
-# define SWAP_SB	swap_swap(mem, "sb");
-# define SWAP_SS	swap_swap(mem, "ss");
-# define SWAP_RA	swap_swap(mem, "ra");
-# define SWAP_RB	swap_swap(mem, "rb");
-# define SWAP_RR	swap_swap(mem, "rr");
-# define SWAP_RRA	swap_swap(mem, "rra");
-# define SWAP_RRB	swap_swap(mem, "rrb");
-# define SWAP_RRR	swap_swap(mem, "rrr");
+# define SWAP_PA	swap_swap(mem, "pa")
+# define SWAP_PB	swap_swap(mem, "pb")
+# define SWAP_SA	swap_swap(mem, "sa")
+# define SWAP_SB	swap_swap(mem, "sb")
+# define SWAP_SS	swap_swap(mem, "ss")
+# define SWAP_RA	swap_swap(mem, "ra")
+# define SWAP_RB	swap_swap(mem, "rb")
+# define SWAP_RR	swap_swap(mem, "rr")
+# define SWAP_RRA	swap_swap(mem, "rra")
+# define SWAP_RRB	swap_swap(mem, "rrb")
+# define SWAP_RRR	swap_swap(mem, "rrr")
 
 #endif
