@@ -147,7 +147,7 @@ void    debug(t_stack *stack, t_memory *mem)
     while (plate)
     {
         nbr = TOKEN;
-		if (mem->brute->color && TYPE && !mem->brute->print)
+		if (mem->brute->color && TYPE)
 		{
 			if (ft_strcmp(TYPE, "pa") == 0)
 				if (nbr == STACK_A->end->content)
@@ -161,14 +161,18 @@ void    debug(t_stack *stack, t_memory *mem)
 			if (ft_strcmp(TYPE, "sb") == 0 || ft_strcmp(TYPE, "ss") == 0)
 				if (nbr == TOKEN_B || nbr == NEXT_B->content)
 					GREEN;
-			if (ft_strcmp(TYPE, "ra") == 0 || ft_strcmp(TYPE, "rr") == 0)
-				YELLOW;
+			if (!ft_strcmp(TYPE, "ra") || !ft_strcmp(TYPE, "rr"))
+				if (stack == STACK_A)
+					YELLOW;
 			if (ft_strcmp(TYPE, "rra") == 0 || ft_strcmp(TYPE, "rrr") == 0)
-				BLUE;
+				if (stack == STACK_A)
+					BLUE;
 			if (ft_strcmp(TYPE, "rb") == 0 || ft_strcmp(TYPE, "rr") == 0)
-				YELLOW;
+				if (stack == STACK_B)
+					YELLOW;
 			if (ft_strcmp(TYPE, "rrb") == 0 || ft_strcmp(TYPE, "rrr") == 0)
-				BLUE;
+				if (stack == STACK_B)
+					BLUE;
 		}
         ft_putnbr(nbr);
 		if (mem->brute->color)
