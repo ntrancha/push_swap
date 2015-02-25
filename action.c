@@ -91,7 +91,7 @@ void		action_brute(t_memory *mem)
 	FIND = 0;
 	brute_force(mem, brute);
 	if (!brute->all)
-		ft_putendl(brute->code);
+		display_endl(brute->code);
 	else
 		action_brute_next(mem, mem_cpy);
 	ft_listdel(brute->solution, del);
