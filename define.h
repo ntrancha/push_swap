@@ -21,6 +21,11 @@
 # define IS_SORT_B	is_sort(STACK_B)
 # define IS_NSORT_A	is_unsort(STACK_A)
 # define IS_NSORT_B	is_unsort(STACK_B)
+# define SORT_FST_A	is_sort_token(TOKEN_A, TOKEN_NA, TOKEN_TA)
+# define SORT_FST_B	is_sort_token(TOKEN_B, TOKEN_NB, TOKEN_TB)
+# define SORT_FSE_A	is_sort_token(TOKEN_A, TOKEN_NA, TOKEN_EA)
+# define SORT_FSE_B	is_sort_token(TOKEN_B, TOKEN_NB, TOKEN_EB)
+# define SORT_ASB	is_sort_token(TOKEN_B, TOKEN_A, TOKEN_NA)
 
 # define WHITE		print_color(0)
 # define RED		print_color(1)
@@ -70,9 +75,11 @@
 # define NEXT_B		PLATE_B->previous
 # define TOKEN_A	PLATE_A->content
 # define TOKEN_NA	NEXT_A->content
+# define TOKEN_TA	NEXT_A->previous->content
 # define TOKEN_EA	END_A->content
 # define TOKEN_B	PLATE_B->content
 # define TOKEN_NB	NEXT_B->content
+# define TOKEN_TB	NEXT_B->previous->content
 # define TOKEN_EB	END_B->content
 
 # define TOKEN		plate->content
@@ -93,6 +100,11 @@
 # define SORT_B		status->sort_b
 # define UNSORT_A	status->unsort_a
 # define UNSORT_B	status->unsort_b
+# define FST_A		status->sort_fst_a
+# define FST_B		status->sort_fst_b
+# define FSE_A		status->sort_fse_a
+# define FSE_B		status->sort_fse_b
+# define ASB		status->sort_asb
 
 # define SWAP_PA	swap_swap(mem, "pa")
 # define SWAP_PB	swap_swap(mem, "pb")

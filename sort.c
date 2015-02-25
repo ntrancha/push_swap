@@ -29,13 +29,32 @@ void			algo_sort(t_memory *mem)
 	}
 	else
 	{
-		if (TOKEN_A == MIN_O || TOKEN_A < TOKEN_NA && TOKEN_A < TOKEN_EA)
+		if (!ITER && TOKEN_A != MAX_O)
 			SWAP_PB;
-		if (TOKEN_A > TOKEN_NA && TOKEN_A < TOKEN_EA)
+		else if (TOKEN_A == MIN_O || TOKEN_A < TOKEN_NA && TOKEN_A < TOKEN_EA)
+			SWAP_PB;
+		else if (SIZE_B > 1 && TOKEN_B > TOKEN_A && TOKEN_B > TOKEN_NA)
+		{
+			SWAP_PA;
+			SWAP_RR;
+		}
+		else if (TOKEN_A > TOKEN_NA)
+		{
+			if (SIZE_B == 3 && TOKEN_B < TOKEN_EB && TOKEN_EB < TOKEN_NB)
+				SWAP_RR;
+		}
+		else if (SIZE_B == 3 && TOKEN_B < TOKEN_EB && TOKEN_EB < TOKEN_NB)
+			SWAP_RB;
+		else if (TOKEN_A > TOKEN_NA && TOKEN_A < TOKEN_EA)
+		{
+			if (SIZE_B > 1 && TOKEN_B < TOKEN_NB)
+				SWAP_SS;
+		}
+		else if (TOKEN_A > TOKEN_NA && TOKEN_A < TOKEN_EA)
 			SWAP_SA;
-		if (SIZE_B > 1 && TOKEN_B < TOKEN_NB)
+		else if (SIZE_B > 1 && TOKEN_B < TOKEN_NB)
 			SWAP_SB;
-		if (TOKEN_A > TOKEN_NA && TOKEN_A > TOKEN_EA && TOKEN_NA < TOKEN_EA)
+		else if (TOKEN_A > TOKEN_NA && TOKEN_A > TOKEN_EA && TOKEN_NA < TOKEN_EA)
 			SWAP_RA;
 	}
 	/*

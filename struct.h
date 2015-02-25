@@ -74,6 +74,11 @@ typedef struct		s_status
 	int				sort_b;
 	int				unsort_a;
 	int				unsort_b;
+	int				sort_fst_a;
+	int				sort_fst_b;
+	int				sort_fse_a;
+	int				sort_fse_b;
+	int				sort_asb;
 }					t_status;
 
 #endif

@@ -78,6 +78,23 @@ void			print_status(t_status *status, t_memory *mem)
 		WHITE;
 }
 
+int     is_sort_token(int a, int sa, int ta)
+{
+    if (a < sa && sa < ta)
+        return (0);
+    if (ta < sa && ta > a)
+        return (1);
+    if (a > sa && a < ta)
+        return (2);
+    if (a < sa && ta < a)
+        return (3);
+    if (a > ta && ta > sa)
+        return (4);
+    if (a > sa && sa > ta)
+        return (5);
+    return (-1);
+}
+
 t_status		*status_create(t_memory *mem)
 {
 	t_status	*status;
@@ -94,5 +111,10 @@ t_status		*status_create(t_memory *mem)
 	SORT_B = (SIZE_B > 1 && IS_SORT_B) ? 1 : 0;
 	UNSORT_A = (SIZE_A > 1 && IS_NSORT_A) ? 1 : 0;
 	UNSORT_B = (SIZE_B > 1 && IS_NSORT_B) ? 1 : 0;
+	FST_A = (SIZE_A > 2) ? SORT_FST_A : -1;
+	FST_B = (SIZE_B > 2) ? SORT_FST_B : -1;
+	FSE_A = (SIZE_A > 2) ? SORT_FSE_A : -1;
+	FSE_B = (SIZE_B > 2) ? SORT_FSE_B : -1;
+	ASB = (SIZE_B > 1 && SIZE_A > 1) ? SORT_ASB : -1;
 	return (status);
 }
