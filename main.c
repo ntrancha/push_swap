@@ -22,6 +22,7 @@ int		main(int argc, char **argv)
 	if (argc == 1 && !error())
 		return (-1);
 	mem = get_arg((argc - 1), argv);
+	ORIGINE = stack_copy(STACK_A);
 	if (!mem)
 		return (0);
 	if (PRINT)

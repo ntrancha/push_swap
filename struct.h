@@ -41,6 +41,7 @@ typedef struct		s_brute
 	int				color;
 	int				stack;
 	int				sort;
+	int				info;
 	int				nothing;
 	char			*commande;
 	char			*code;
@@ -63,8 +64,10 @@ typedef struct		s_memory
 typedef struct		s_status
 {
 	int				mid;
+	int				min;
 	int				min_a;
 	int				min_b;
+	int				max;
 	int				max_a;
 	int				max_b;
 	int				sort_a;

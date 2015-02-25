@@ -17,6 +17,10 @@
 # define BRUTE(X)	brute_force(swap_swap(mem_copy(mem), X), mem->brute)
 # define LAST(X)	ft_strcmp(last, X)
 # define CONTENTS	ft_stackcontent
+# define IS_SORT_A	is_sort(STACK_A)
+# define IS_SORT_B	is_sort(STACK_B)
+# define IS_NSORT_A	is_unsort(STACK_A)
+# define IS_NSORT_B	is_unsort(STACK_B)
 
 # define WHITE		print_color(0)
 # define RED		print_color(1)
@@ -36,9 +40,10 @@
 # define POST_CODE	mem->brute->pre_code
 # define DEBUG		mem->brute->debug
 # define PRINT		mem->brute->print
+# define INFO		mem->brute->info
 # define FORCE		mem->brute->brute
 # define COLOR		mem->brute->color
-# define STACK		mem->brute->stack;
+# define STACK		mem->brute->stack
 # define NOTHING	mem->brute->nothing
 # define HELP		mem->brute->help
 # define ALL		mem->brute->all
@@ -78,8 +83,10 @@
 # define END		stack->end
 
 # define MID		status->mid
+# define MIN_O		status->min
 # define MIN_A		status->min_a
 # define MIN_B		status->min_b
+# define MAX_O		status->max
 # define MAX_A		status->max_a
 # define MAX_B		status->max_b
 # define SORT_A		status->sort_a

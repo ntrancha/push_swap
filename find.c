@@ -36,12 +36,12 @@ int     find_min(t_stack *stack, int max)
 {
     t_plate *plate;
 
-    plate = stack->start;
+    plate = stack->end;
     while (plate)
     {
         if (TOKEN < max)
             max = TOKEN;
-        plate = plate->next;
+        plate = plate->previous;
     }
     return (max);
 }
@@ -52,12 +52,12 @@ int     find_max(t_stack *stack)
     t_plate *plate;
 
     ret = 0;
-    plate = stack->start;
+    plate = stack->end;
     while (plate)
     {
         if (TOKEN > ret)
             ret = TOKEN;
-        plate = plate->next;
+        plate = plate->previous;
     }
     return (ret);
 }

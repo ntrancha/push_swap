@@ -35,6 +35,8 @@ static int	option_end(char c, t_brute *brute)
         brute->help = 1;
     if (c == 'v')
         brute->stack = 1;
+    if (c == 'i')
+        brute->info = 1;
     if (c == 'P')
     {
         brute->pre_code = 1;
@@ -61,7 +63,7 @@ static int	option_next(char *argv, t_brute *brute)
         c = argv[index];
         if (c == 'd' || c == 'p' || c == 'b' || c == 's' || c == 'n')
             ret = option_end(c, brute);
-        else if (c == 'c' || c == 'h' || c == 'v' || c == 'a')
+        else if (c == 'c' || c == 'h' || c == 'v' || c == 'a' || c == 'i')
             ret = option_end(c, brute);
         else if (c == 'P')
 			put = option_end(c, brute);
@@ -94,6 +96,8 @@ int     option(char *argv, t_brute *brute)
 		return (option_end('n', brute));
     else if (ft_strcmp(argv, "-P") == 0 || ft_strcmp(argv, "--put") == 0)
 		return (option_end('P', brute));
+    else if (ft_strcmp(argv, "-i") == 0 || ft_strcmp(argv, "--info") == 0)
+		return (option_end('i', brute));
     else
         return (option_next(argv, brute));
     return (1);

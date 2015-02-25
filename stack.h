@@ -47,6 +47,9 @@ t_memory	*memory_create(void);
 void		algo_sort(t_memory *mem);
 void		sort(t_memory *mem);
 
+t_status	*status_create(t_memory *mem);
+void		print_status(t_status *status, t_memory *mem);
+
 t_brute		*brute_create(void);
 int			post_code(t_memory *mem);
 int			brute_force(t_memory *mem, t_brute *brute);
