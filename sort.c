@@ -62,6 +62,6 @@ void    		sort(t_memory *mem)
 	int     	count;
 
 	count = 0;
-	while (count++ < 100 && (SIZE_B || count < 5))
+	while (count++ < 200 && (SIZE_B || count < 5))
 		algo_sort(mem);
 }
