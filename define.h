@@ -83,4 +83,16 @@
 # define UNSORT_A	status->unsort_a
 # define UNSORT_B	status->unsort_b
 
+# define SWAP_PA	swap_swap(mem, "pa");
+# define SWAP_PB	swap_swap(mem, "pb");
+# define SWAP_SA	swap_swap(mem, "sa");
+# define SWAP_SB	swap_swap(mem, "sb");
+# define SWAP_SS	swap_swap(mem, "ss");
+# define SWAP_RA	swap_swap(mem, "ra");
+# define SWAP_RB	swap_swap(mem, "rb");
+# define SWAP_RR	swap_swap(mem, "rr");
+# define SWAP_RRA	swap_swap(mem, "rra");
+# define SWAP_RRB	swap_swap(mem, "rrb");
+# define SWAP_RRR	swap_swap(mem, "rrr");
+
 #endif
