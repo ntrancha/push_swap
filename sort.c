@@ -22,8 +22,22 @@ void			algo_sort(t_memory *mem)
 	status = status_create(mem);
 	if (STACK && INFO)
 		print_status(status, mem);
-	if (TOKEN_A == MIN_O || TOKEN_A < TOKEN_NA && TOKEN_A < TOKEN_EA)
-		SWAP_PB;
+	if (SORT_A)
+	{
+		if (SIZE_B > 0)
+			SWAP_PA;
+	}
+	else
+	{
+		if (TOKEN_A == MIN_O || TOKEN_A < TOKEN_NA && TOKEN_A < TOKEN_EA)
+			SWAP_PB;
+		if (TOKEN_A > TOKEN_NA && TOKEN_A < TOKEN_EA)
+			SWAP_SA;
+		if (SIZE_B > 1 && TOKEN_B < TOKEN_NB)
+			SWAP_SB;
+		if (TOKEN_A > TOKEN_NA && TOKEN_A > TOKEN_EA && TOKEN_NA < TOKEN_EA)
+			SWAP_RA;
+	}
 	/*
 	if (SIZE_B > 1 && TOKEN_B < TOKEN_NB)
 	{
@@ -48,9 +62,6 @@ void			algo_sort(t_memory *mem)
 
 void    		sort(t_memory *mem)
 {
-	int     	count;
-
-	count = 0;
-	while (count++ < 4 && (SIZE_B || count < 5))
+	while (SIZE_B != 0 || IS_SORT_A != 1)
 		algo_sort(mem);
 }
