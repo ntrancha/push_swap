@@ -31,18 +31,29 @@ void			algo_sort(t_memory *mem)
 	{
 		if (MIN_A == TOKEN_EA)
 			SWAP_RRA;
-		if (FST_A == 231 && FST_B == 231)
-			SWAP_RRR;
-		if (FST_A == 231)
-			SWAP_RRA;
-		if (FST_B == 231)
-			SWAP_RRB;
-		if (FST_A == 312 && FST_B == 312)
-			SWAP_RR;
-		if (FST_A == 312)
+		else if (MAX_A == TOKEN_A)
 			SWAP_RA;
-		if (FST_B == 312)
+		else if (ITER == 0)
+			SWAP_PB;
+		else if (FST_A == 132 && TOKEN_A < TOKEN_B)
+		{
+			SWAP_PB;
+			SWAP_SS;
+		}
+		else if (FST_A == 312 && FST_B == 312)
+			SWAP_RR;
+		else if (FST_A == 312 || TOKEN_A == MAX_A)
+			SWAP_RA;
+		else if (FST_B == 312)
 			SWAP_RB;
+		else if (FST_A == 213 && FST_B == 213)
+			SWAP_SS;
+		else if (FST_A == 213)
+			SWAP_SA;
+		else if (FST_A == 213)
+			SWAP_SB;
+		else
+			SWAP_PB;
 	}
 	/*
 	if (SIZE_B > 1 && TOKEN_B < TOKEN_NB)
