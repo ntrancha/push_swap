@@ -65,6 +65,7 @@ void		exec_code(char **tab, t_memory *mem)
 int			post_code(t_memory *mem)
 {
 	char	**tab;
+	int		index;
 
 	tab = ft_strsplit(COMMANDE, ';');
 	if (COMMANDE == NULL || !is_commande(tab))
@@ -73,5 +74,9 @@ int			post_code(t_memory *mem)
 		return (0);
 	}
 	exec_code(tab, mem);
+	index = 0;
+	while (tab[index])
+		ft_strdel((char **)&(tab[index++]));
+	ft_memdel((void**)tab);
 	return (1);
 }
