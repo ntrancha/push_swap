@@ -19,7 +19,7 @@ void			brute_a(t_memory *mem, int sort_a, char *last)
 {
 	if (LAST(";pb") != 0 && SIZE_B > 0)
 		BRUTE("pa");
-	if (!sort_a)
+	else if (!sort_a)
 	{
 		if (LAST(",ra") != 0 && SIZE_A > 2)
 		 	BRUTE("rra");
@@ -57,10 +57,12 @@ void			brute_d(t_memory *mem, char *last)
 
 int				brute_end(t_memory *mem, char *last)
 {
+	ft_putendl("end");
 	if (ITER != 0 && stack_cmp(ORIGINE, STACK_A))
 		return (0);
-	if (is_sort(STACK_A) && !SIZE_B)
+	if (is_sort(STACK_A) && SIZE_B == 0)
 	{
+		ft_putendl("ok");
         ft_strdel(&last);
         if (FIND && (ITER < MIN || !CODE))
         {
