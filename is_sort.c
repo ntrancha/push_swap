@@ -89,3 +89,16 @@ int			is_sort_token_four(int a, int b, int c, int d)
         return (3124);
 	return (is_sort_token_four_next(a, b, c, d));
 }
+
+int			have_nbr(int a, int b, int c, int d, nbr)
+{
+	if (a == nbr)
+		return (1);
+	if (b == nbr)
+		return (1);
+	if (c == nbr)
+		return (2);
+	if (d == nbr)
+		return (3);
+	return (0);
+}

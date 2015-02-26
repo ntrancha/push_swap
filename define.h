@@ -29,6 +29,7 @@
 # define SORT_ASBS	is_sort_token_four(TOKEN_A, TOKEN_NA, TOKEN_B, TOKEN_NB)
 # define SORT_ASTE	is_sort_token_four(TOKEN_A, TOKEN_NA, TOKEN_TA, TOKEN_EA)
 # define SORT_BSTE	is_sort_token_four(TOKEN_B, TOKEN_NB, TOKEN_TB, TOKEN_EB)
+# define HAVE_MAX	have_nbr(TOKEN_A, TOKEN_NA, TOKEN_TA, TOKEN_EA, MAX_A)
 
 # define WHITE		print_color(0)
 # define RED		print_color(1)
