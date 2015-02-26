@@ -47,6 +47,9 @@ t_memory	*memory_create(void);
 void		algo_sort(t_memory *mem);
 void		sort(t_memory *mem);
 
+int			is_sort_token(int a, int sa, int ta);
+int			is_sort_token_four(int a, int b, int c, int d);
+
 t_status	*status_create(t_memory *mem);
 void		print_status(t_status *status, t_memory *mem);
 
