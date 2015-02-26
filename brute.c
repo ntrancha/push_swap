@@ -34,15 +34,15 @@ void			brute_a(t_memory *mem, int sort_a, char *last)
 
 void			brute_b(t_memory *mem, int sort_b, char *last)
 {
-	//if (!sort_b)
-	//{
+	if (mem && STACK_B)
+	{
 		if (LAST("rrb") != 0 && SIZE_B > 2)
 			BRUTE("rb");
 		if (LAST(";rb") != 0 && SIZE_B > 2)
 			BRUTE("rrb");
 		if (LAST(";sb") && LAST(";sa") && SIZE_B > 1)
 			BRUTE("sb");
-	//}
+	}
 }
 
 void			brute_d(t_memory *mem, char *last)
@@ -57,12 +57,10 @@ void			brute_d(t_memory *mem, char *last)
 
 int				brute_end(t_memory *mem, char *last)
 {
-	ft_putendl("end");
 	if (ITER != 0 && stack_cmp(ORIGINE, STACK_A))
 		return (0);
-	if (is_sort(STACK_A) && SIZE_B == 0)
+	if (mem && is_sort(STACK_A) && SIZE_B == 0)
 	{
-		ft_putendl("ok");
         ft_strdel(&last);
         if (FIND && (ITER < MIN || !CODE))
         {
@@ -92,6 +90,7 @@ int				brute_end(t_memory *mem, char *last)
 		if ((ALL && !FIND))
 			SOLUTION = ft_listadd(SOLUTION, ft_strdup(CHAINE));
         memory_del(mem);
+		mem = NULL;
         return (1);
 	}
 	return (0);
