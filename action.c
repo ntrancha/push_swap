@@ -30,7 +30,7 @@ void		action_sort(t_memory *mem)
 		ft_putchar('\n');
 		print_stack(mem);
 	}
-	display_endl(mem->chaine);
+	display_endl(CHAINE);
 }
 
 void		action_brute_end(t_memory *mem, t_memory *mem_cpy)

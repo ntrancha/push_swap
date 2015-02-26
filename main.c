@@ -32,9 +32,9 @@ int		main(int argc, char **argv)
 	if (POST_CODE)
 		if (!post_code(mem))
 			return (0);
-	if (!mem->brute->brute && !mem->brute->nothing)
+	if (!FORCE && !NOTHING)
 		action_sort(mem);
-	else if (!mem->brute->nothing)
+	else if (!NOTHING)
 		action_brute(mem);
 	return (1);
 }
