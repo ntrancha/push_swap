@@ -33,22 +33,24 @@ void			algo_sort(t_memory *mem)
 		{
 			if (have_nbr(2431, 3241, 3231, SORT_ASTE) > 0)
 				SWAP_RRR;
-			if (have_nbr(3421, 4231, 4321, SORT_ASTE) > 0)
+			else if (have_nbr(3421, 4231, 4321, SORT_ASTE) > 0)
 				SWAP_RRR;
-			if (SORT_ASTE > 1000 && SORT_ASTE < 2000)
+			else if (SORT_ASTE > 1000 && SORT_ASTE < 2000)
 				SWAP_PB;
+			else if (ITER == 0)
+				SWAP_PB;
+			else
+				SWAP_SA;
 		}
 		else if (MIN_A == TOKEN_EA)
 			SWAP_RRA;
 		else if (MAX_A == TOKEN_A)
 			SWAP_RA;
-		else if (ITER == 0)
-			SWAP_PB;
 		else if (TOKEN_EA == MAX_A && SORT_FST_A == 312)
 			SWAP_SA;
 		else if (SORT_FSE_A == 231)
 			SWAP_RRA;
-		else if (FST_A == 132 && TOKEN_A < TOKEN_B)
+		else if (FST_A == 132 && TOKEN_A < TOKEN_B && TOKEN_NA != MAX_A)
 		{
 			SWAP_PB;
 			SWAP_SS;

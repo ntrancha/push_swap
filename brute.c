@@ -17,41 +17,41 @@
 
 void			brute_a(t_memory *mem, int sort_a, char *last)
 {
-	if (LAST(";pb") != 0 && SIZE_B > 0)
+	//if (LAST(";pb") != 0 && SIZE_B > 0)
 		BRUTE("pa");
-	else if (!sort_a)
-	{
-		if (LAST(",ra") != 0 && SIZE_A > 2)
+	//if (!sort_a)
+	//{
+	//	if (LAST(",ra") != 0 && SIZE_A > 2)
 		 	BRUTE("rra");
-		if (LAST("rra") != 0 && SIZE_A > 2)
+	//	if (LAST("rra") != 0 && SIZE_A > 2)
 			BRUTE("ra");
-		if (LAST(";sa") && LAST(";sb") && SIZE_A > 1)
+	//	if (LAST(";sa") && LAST(";sb") && SIZE_A > 1)
 			BRUTE("sa");
-		if (LAST(";pa") != 0 && SIZE_A > 2)
+	//	if (LAST(";pa") != 0 && SIZE_A > 2)
 			BRUTE("pb");
-	}
+	//}
 }
 
 void			brute_b(t_memory *mem, int sort_b, char *last)
 {
 	if (mem && STACK_B)
 	{
-		if (LAST("rrb") != 0 && SIZE_B > 2)
+	//	if (LAST("rrb") != 0 && SIZE_B > 2)
 			BRUTE("rb");
-		if (LAST(";rb") != 0 && SIZE_B > 2)
+	//	if (LAST(";rb") != 0 && SIZE_B > 2)
 			BRUTE("rrb");
-		if (LAST(";sb") && LAST(";sa") && SIZE_B > 1)
+	//	if (LAST(";sb") && LAST(";sa") && SIZE_B > 1)
 			BRUTE("sb");
 	}
 }
 
 void			brute_d(t_memory *mem, char *last)
 {
-	if (SIZE_A > 1 && SIZE_B > 1 && LAST(";rr") != 0 )
+	//if (SIZE_A > 1 && SIZE_B > 1 && LAST(";rr") != 0 )
 		BRUTE("rrr");
-	if (SIZE_A > 1 && SIZE_B > 1 && LAST("ss") != 0 )
+	//if (SIZE_A > 1 && SIZE_B > 1 && LAST("ss") != 0 )
 		BRUTE("ss");
-	if (SIZE_A > 1 && SIZE_B > 1 && LAST("rrr") != 0 )
+	//if (SIZE_A > 1 && SIZE_B > 1 && LAST("rrr") != 0 )
 		BRUTE("rr");
 }
 
