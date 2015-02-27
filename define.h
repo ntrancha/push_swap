@@ -26,6 +26,7 @@
 # define SORT_FSE_A	is_sort_token(TOKEN_A, TOKEN_NA, TOKEN_EA)
 # define SORT_FSE_B	is_sort_token(TOKEN_B, TOKEN_NB, TOKEN_EB)
 # define SORT_ASB	is_sort_token(TOKEN_A, TOKEN_NA, TOKEN_B)
+# define SORT_BSA	is_sort_token(TOKEN_B, TOKEN_NB, TOKEN_A)
 # define SORT_ASBS	is_sort_token_four(TOKEN_A, TOKEN_NA, TOKEN_B, TOKEN_NB)
 # define SORT_ASTE	is_sort_token_four(TOKEN_A, TOKEN_NA, TOKEN_TA, TOKEN_EA)
 # define SORT_BSTE	is_sort_token_four(TOKEN_B, TOKEN_NB, TOKEN_TB, TOKEN_EB)
