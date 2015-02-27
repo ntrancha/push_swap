@@ -37,11 +37,10 @@ void			algo_sort(t_memory *mem)
 				SWAP_RRR;
 			else if (SORT_ASTE > 1000 && SORT_ASTE < 2000)
 				SWAP_PB;
-			else if (ITER == 0)
-				SWAP_PB;
-			else
+			else if (TOKEN_A > TOKEN_NA)
 				SWAP_SA;
-			ft_putendl("fin");
+			else
+				SWAP_PB;
 		}
 		else if (MIN_A == TOKEN_EA)
 			SWAP_RRA;
