@@ -90,15 +90,20 @@ int			is_sort_token_four(int a, int b, int c, int d)
 	return (is_sort_token_four_next(a, b, c, d));
 }
 
-int			have_nbr(int a, int b, int c, int d, nbr)
+int			have_nbr(int a, int b, int c, int nbr)
 {
 	if (a == nbr)
 		return (1);
 	if (b == nbr)
-		return (1);
-	if (c == nbr)
 		return (2);
-	if (d == nbr)
+	if (c == nbr)
 		return (3);
+	return (0);
+}
+
+int		is_equ(int a, int b, int c)
+{
+	if (a == b && b == c)
+		return (1);
 	return (0);
 }
