@@ -19,9 +19,11 @@ void			algo_sort(t_memory *mem)
 {
 	t_status	*status;
 
-	status = status_create(mem);
 	if (STACK && INFO)
+	{
+		status = status_create(mem);
 		print_status(status, mem);
+	}
 	if (SORT_A)
 	{
 		if (SIZE_B > 0)
@@ -93,11 +95,57 @@ void			algo_sort(t_memory *mem)
 	else
 		SWAP_PA;
 	*/
-	ft_memdel((void**)&status);
+	if (STACK && INFO)
+		ft_memdel((void**)&status);
+}
+
+void			depile(t_memory *mem)
+{
+	while (SIZE_B > 0)
+		SWAP_PA;
+}
+
+void			empile(t_memory *mem)
+{
+	if (SIZE_A == 3 && TOKEN_B > TOKEN_NB && SORT_FSE_A == 231)
+		SWAP_RRA;
+	if (SIZE_B > 1 && TOKEN_B < TOKEN_NB && SORT_FSE_A == 132)
+		SWAP_RRA;
+	else if (SIZE_B > 1 && TOKEN_B < TOKEN_NB && TOKEN_A > TOKEN_NA)
+		SWAP_SS;
+	else if (SIZE_B > 1 && TOKEN_B < TOKEN_NB)
+		SWAP_SB;
+	else if (SIZE_A > 1 && SIZE_B > 1 && SORT_ASBS == 4312)
+		SWAP_RR;
+	else if (SIZE_A > 1 && SIZE_B > 1 && SORT_ASBS == 4321)
+		SWAP_SA;
+	else if (SIZE_A > 2 && SORT_FST_A == 231)
+		SWAP_PB;
+	else if (SIZE_A > 2 && SORT_FST_A == 312)
+		SWAP_RA;
+	else if (SIZE_A > 2 && SORT_FST_A == 132)
+		SWAP_PB;
+	else if (SIZE_A > 2 && SORT_FST_A == 123)
+		SWAP_PB;
+	else if (SIZE_A > 2 && SORT_FST_A == 213)
+		SWAP_SA;
+	else if (SIZE_A > 2 && SORT_FST_A == 321)
+		SWAP_RA;
+	if (SIZE_A == 4 && SORT_ASTE == 1234 && TOKEN_B > TOKEN_NB)
+		depile(mem);
+	if (SIZE_A == 3 && SORT_FSE_A == 123 && TOKEN_B > TOKEN_NB)
+		depile(mem);
+	else if (SIZE_A == 2 && SORT_ASBS == 3421)
+		depile(mem);
+	else
+		empile(mem);
 }
 
 void    		sort(t_memory *mem)
 {
+	/*
 	while (SIZE_B != 0 || IS_SORT_A != 1)
 		algo_sort(mem);
+*/	
+	empile(mem);
 }
