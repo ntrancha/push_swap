@@ -41,9 +41,14 @@ void			algo_sort(t_memory *mem)
 				SWAP_PB;
 			else
 				SWAP_SA;
+			ft_putendl("fin");
 		}
 		else if (MIN_A == TOKEN_EA)
 			SWAP_RRA;
+		else if (MAX_A == TOKEN_A && MAX_B == TOKEN_EB)
+			SWAP_RR;
+		else if (SIZE_B > 1 && TOKEN_A > TOKEN_NA && TOKEN_B < TOKEN_NB)
+			SWAP_SS;
 		else if (MAX_A == TOKEN_A)
 			SWAP_RA;
 		else if (TOKEN_EA == MAX_A && SORT_FST_A == 312)
