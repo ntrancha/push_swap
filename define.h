@@ -29,6 +29,8 @@
 # define SORT_ASBS	is_sort_token_four(TOKEN_A, TOKEN_NA, TOKEN_B, TOKEN_NB)
 # define SORT_ASTE	is_sort_token_four(TOKEN_A, TOKEN_NA, TOKEN_TA, TOKEN_EA)
 # define SORT_BSTE	is_sort_token_four(TOKEN_B, TOKEN_NB, TOKEN_TB, TOKEN_EB)
+# define SORT_ASTF	is_sort_token_four(TOKEN_A, TOKEN_NA, TOKEN_TA, TOKEN_FA)
+# define SORT_BSTF	is_sort_token_four(TOKEN_B, TOKEN_NB, TOKEN_TB, TOKEN_FB)
 # define HAVE_MAX	have_nbr(TOKEN_A, TOKEN_NA, TOKEN_TA, MAX_A)
 # define HAVE_MIN	have_nbr(TOKEN_A, TOKEN_NA, TOKEN_TA, MIN_A)
 
@@ -81,10 +83,12 @@
 # define TOKEN_A	PLATE_A->content
 # define TOKEN_NA	NEXT_A->content
 # define TOKEN_TA	NEXT_A->previous->content
+# define TOKEN_FA	NEXT_A->previous->previous->content
 # define TOKEN_EA	END_A->content
 # define TOKEN_B	PLATE_B->content
 # define TOKEN_NB	NEXT_B->content
 # define TOKEN_TB	NEXT_B->previous->content
+# define TOKEN_FB	NEXT_B->previous->previous->content
 # define TOKEN_EB	END_B->content
 
 # define TOKEN		plate->content
