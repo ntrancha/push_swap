@@ -37,6 +37,10 @@ int			sort_0(t_memory *mem)
 		}
 		else if (SIZE_A > 3 && SORT_ASTF == 4321)
 			SWAP_RA;
+		else if (SORT_FSE_A == 312)
+			SWAP_SA;
+		else if (SORT_ASTF > 4000)
+			SWAP_RA;
 		else	
 			SWAP_PB;
 		return (1);
@@ -74,15 +78,15 @@ int			sort_2(t_memory *mem)
 	{
 		if (TOKEN_A > TOKEN_NA && TOKEN_B < TOKEN_NB)
 			SWAP_SS;
-		if (SORT_ASBS == 1324)
+		else if (TOKEN_B < TOKEN_NB)
+			SWAP_SB;
+		else if (SORT_ASBS == 1324)
 		{
 			SWAP_PB;
 			SWAP_SB;
 			SWAP_PB;
 			SWAP_RRB;
 		}
-		else if (TOKEN_B < TOKEN_NB)
-			SWAP_SB;
 		else if (TOKEN_A > TOKEN_NA)
 			SWAP_SA;
 		else
@@ -106,6 +110,8 @@ int			sort_3(t_memory *mem)
 			SWAP_SB;
 		else if (TOKEN_A > TOKEN_NA)
 			SWAP_SA;
+		else if (SORT_BSA == 321 && TOKEN_A > TOKEN_EB)
+			SWAP_PA;
 		else
 			SWAP_PB;
 		return (1);

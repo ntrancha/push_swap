@@ -18,14 +18,12 @@
 void        print_one(char *msg, int num)
 {
     ft_putstr(msg);
-	WHITE;
     ft_putnbr(num);
 }
 
 void        print_two(char *msg, int num, int previous)
 {
     ft_putstr(msg);
-	WHITE;
     ft_putnbr(num);
     ft_putchar('\t');
     ft_putnbr(previous);
@@ -34,7 +32,8 @@ void        print_two(char *msg, int num, int previous)
 void        print_three(t_memory *mem)
 {
     ft_putstr("[STACK A] <--> [STACK B]\t");
-	WHITE;
+	if (COLOR)
+		WHITE;
     ft_putnbr(TOKEN_A);
     ft_putchar(' ');
     ft_putnbr(NEXT_A->content);
@@ -85,7 +84,8 @@ void        print_swap(t_memory *mem)
 	        print_next(mem);
 		else
 			ft_putchar('\n');
-		WHITE;
+		if (COLOR)
+			WHITE;
     }
     mem->func(mem);
     if (mem->brute->stack)
