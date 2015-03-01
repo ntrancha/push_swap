@@ -94,10 +94,10 @@ t_status		*status_create(t_memory *mem)
 	SORT_B = (SIZE_B > 1 && IS_SORT_B) ? 1 : 0;
 	UNSORT_A = (SIZE_A > 1 && IS_NSORT_A) ? 1 : 0;
 	UNSORT_B = (SIZE_B > 1 && IS_NSORT_B) ? 1 : 0;
-	FST_A = (SIZE_A > 2) ? SORT_FST_A : -1;
+/*	FST_A = (SIZE_A > 2) ? SORT_FST_A : -1;
 	FST_B = (SIZE_B > 2) ? SORT_FST_B : -1;
 	FSE_A = (SIZE_A > 2) ? SORT_FSE_A : -1;
 	FSE_B = (SIZE_B > 2) ? SORT_FSE_B : -1;
-	ASB = (SIZE_B > 1 && SIZE_A > 1) ? SORT_ASB : -1;
+	ASB = (SIZE_B > 1 && SIZE_A > 1) ? SORT_ASB : -1;*/
 	return (status);
 }

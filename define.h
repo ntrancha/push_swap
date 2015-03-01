@@ -21,17 +21,21 @@
 # define IS_SORT_B	is_sort(STACK_B)
 # define IS_NSORT_A	is_unsort(STACK_A)
 # define IS_NSORT_B	is_unsort(STACK_B)
-# define SORT_FST_A	is_sort_token(TOKEN_A, TOKEN_NA, TOKEN_TA)
-# define SORT_FST_B	is_sort_token(TOKEN_B, TOKEN_NB, TOKEN_TB)
-# define SORT_FSE_A	is_sort_token(TOKEN_A, TOKEN_NA, TOKEN_EA)
-# define SORT_FSE_B	is_sort_token(TOKEN_B, TOKEN_NB, TOKEN_EB)
-# define SORT_ASB	is_sort_token(TOKEN_A, TOKEN_NA, TOKEN_B)
-# define SORT_BSA	is_sort_token(TOKEN_B, TOKEN_NB, TOKEN_A)
-# define SORT_ASBS	is_sort_token_four(TOKEN_A, TOKEN_NA, TOKEN_B, TOKEN_NB)
-# define SORT_ASTE	is_sort_token_four(TOKEN_A, TOKEN_NA, TOKEN_TA, TOKEN_EA)
-# define SORT_BSTE	is_sort_token_four(TOKEN_B, TOKEN_NB, TOKEN_TB, TOKEN_EB)
-# define SORT_ASTF	is_sort_token_four(TOKEN_A, TOKEN_NA, TOKEN_TA, TOKEN_FA)
-# define SORT_BSTF	is_sort_token_four(TOKEN_B, TOKEN_NB, TOKEN_TB, TOKEN_FB)
+# define LEN_A(X)	(SIZE_A >= X)
+# define LEN_B(X)	(SIZE_B >= X)
+# define CMP_AST	is_sort_token(TOKEN_A, TOKEN_NA, TOKEN_TA)
+# define CMP_BST	is_sort_token(TOKEN_B, TOKEN_NB, TOKEN_TB)
+# define CMP_ASE	is_sort_token(TOKEN_A, TOKEN_NA, TOKEN_EA)
+# define CMP_BSE	is_sort_token(TOKEN_B, TOKEN_NB, TOKEN_EB)
+# define CMP_ASB	is_sort_token(TOKEN_A, TOKEN_NA, TOKEN_B)
+# define CMP_BSA	is_sort_token(TOKEN_B, TOKEN_NB, TOKEN_A)
+# define CMP_ASBS	is_sort_token_four(TOKEN_A, TOKEN_NA, TOKEN_B, TOKEN_NB)
+# define CMP_ASTE	is_sort_token_four(TOKEN_A, TOKEN_NA, TOKEN_TA, TOKEN_EA)
+# define CMP_BSTE	is_sort_token_four(TOKEN_B, TOKEN_NB, TOKEN_TB, TOKEN_EB)
+# define CMP_ASEP	is_sort_token_four(TOKEN_A, TOKEN_NA, TOKEN_EA, TOKEN_PA)
+# define CMP_BSEP	is_sort_token_four(TOKEN_B, TOKEN_NB, TOKEN_EB, TOKEN_PB)
+# define CMP_ASTF	is_sort_token_four(TOKEN_A, TOKEN_NA, TOKEN_TA, TOKEN_FA)
+# define CMP_BSTF	is_sort_token_four(TOKEN_B, TOKEN_NB, TOKEN_TB, TOKEN_FB)
 # define HAVE_MAX	have_nbr(TOKEN_A, TOKEN_NA, TOKEN_TA, MAX_A)
 # define HAVE_MIN	have_nbr(TOKEN_A, TOKEN_NA, TOKEN_TA, MIN_A)
 
@@ -86,11 +90,13 @@
 # define TOKEN_TA	NEXT_A->previous->content
 # define TOKEN_FA	NEXT_A->previous->previous->content
 # define TOKEN_EA	END_A->content
+# define TOKEN_PA	END_A->next->content
 # define TOKEN_B	PLATE_B->content
 # define TOKEN_NB	NEXT_B->content
 # define TOKEN_TB	NEXT_B->previous->content
 # define TOKEN_FB	NEXT_B->previous->previous->content
 # define TOKEN_EB	END_B->content
+# define TOKEN_PB	END_B->next->content
 
 # define TOKEN		plate->content
 # define NEXT		plate->next
